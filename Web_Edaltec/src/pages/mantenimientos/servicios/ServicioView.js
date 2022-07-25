@@ -12,8 +12,7 @@ export const ServicioView = () => {
     const  { showModal } = useSelector(state => state.modal);         
     return (
         <> 
-          <ServicioFiltros />            
-           <br/> 
+          <ServicioFiltros />             
            <ServicioGrilla />
             {
                 showModal &&   

@@ -10,6 +10,7 @@ import { anularArchivosCargadoEvidencia, flagTerminoCargaArchivo, subirArchivoEv
 import { Swal_alert, Swal_Question } from '../../../helper/alertas';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
+import { useNotificacion } from '../../../hooks/useNotificacion';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -45,6 +46,14 @@ export const ListaEvidenciaForm = () => {
     const [filesEscaneo , setFilesEscaneo ] = useState([]);
     const [filesCroquis, setFilesCroquis ] = useState([]);
     const [filesVereda , setFilesVereda ] = useState([]);    
+
+    //  //----- notificaciones-----
+    const {  notification, openNotification, closeNotification, objNotification, assignNotification } = useNotificacion({
+        nombre_usuario_creacion : '',
+        fecha_creacion : '',
+        nombre_usuario_edicion : '',
+        fecha_edicion:  ''
+    })
 
     useEffect(() => {
         const {tipoCarga , estaCompletadoCarga } = flag_terminoCargaArchivos;
@@ -135,29 +144,14 @@ export const ListaEvidenciaForm = () => {
     } 
     
     const handleClick_Auditoria = ({nombre_usuario_creacion, fecha_creacion, nombre_usuario_edicion, fecha_edicion })=>{  
-        setOpenAlert(true);
-        setObjAuditoria({
+        openNotification(true);
+        assignNotification({
                 nombre_usuario_creacion,
                 fecha_creacion,
                 nombre_usuario_edicion ,
                 fecha_edicion,
         })
-    } 
- 
-     //----- notificaciones-----
-    const [openAlert, setOpenAlert] = useState(false);    
-    const handleCloseNotificacion = (event, reason) => {
-      if (reason === 'clickaway') {
-        return;
-      }  
-      setOpenAlert(false);
-    };
-    const [objAuditoria, setObjAuditoria] = useState({
-        nombre_usuario_creacion : '',
-        fecha_creacion : '',
-        nombre_usuario_edicion : '',
-        fecha_edicion:  ''
-    });
+    }  
 
 
   return (
@@ -269,8 +263,7 @@ export const ListaEvidenciaForm = () => {
                                 </Table>  
                         </div>   
                     </Col>
-                </Row>       
-                       
+                </Row>                              
 
                 <Row>
                     <Col md={12}  lg={6} >
@@ -342,15 +335,15 @@ export const ListaEvidenciaForm = () => {
                     </Col>                    
                 </Row>
 
-                <Snackbar open={openAlert}        
+                <Snackbar open={notification}        
                         anchorOrigin={{vertical: 'top', horizontal: 'right'} }   
-                        autoHideDuration={6000} onClose={handleCloseNotificacion}>
-                    <Alert onClose={handleCloseNotificacion} severity="success">
+                        autoHideDuration={3000} onClose={closeNotification}>
+                    <Alert onClose={closeNotification} severity="success">
                     <AlertTitle>   Auditoria </AlertTitle>                        
-                    Usuario Creacion : { objAuditoria.nombre_usuario_creacion } — <strong> {objAuditoria.fecha_creacion} </strong> 
+                    Usuario Creacion : { objNotification.nombre_usuario_creacion } — <strong> {objNotification.fecha_creacion} </strong> 
                        <br></br>       
                        <hr/>   
-                    Usuario Edicion : { objAuditoria.nombre_usuario_edicion } — <strong> {objAuditoria.fecha_edicion} </strong> 
+                    Usuario Edicion : { objNotification.nombre_usuario_edicion } — <strong> {objNotification.fecha_edicion} </strong> 
                     </Alert>                    
                 </Snackbar>
 

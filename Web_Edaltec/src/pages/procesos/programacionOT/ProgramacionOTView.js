@@ -1,18 +1,12 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-
- 
-import MiModal from '../../../components/shared/controls/MiModal';
+import { useDispatch } from 'react-redux';
 import { getCargarCombos } from '../../../redux/slice/procesos/programacionOTSlice';
 import { ProgramacionOTFiltros } from './ProgramacionOTFiltros';
-import { ProgramacionOTGrilla } from './ProgramacionOTGrilla';
-import { ProgramacionOTRegistroForm } from './ProgramacionOTRegistroForm';
- 
+import { ProgramacionOTGrilla } from './ProgramacionOTGrilla'; 
  
 export const ProgramacionOTView = () => { 
     //----usando el hook  redux
     const dispatch = useDispatch();   
-    const  { showModal } = useSelector(state => state.modal);  
     
     useEffect(() => {
         dispatch(getCargarCombos())
@@ -20,15 +14,8 @@ export const ProgramacionOTView = () => {
     
     return (
         <> 
-          <ProgramacionOTFiltros/>            
-           <br/> 
+           <ProgramacionOTFiltros/>            
            <ProgramacionOTGrilla/>
-            {
-                showModal &&   
-                <MiModal fullWidth = {true} maxWidth = 'lg'> 
-                    <ProgramacionOTRegistroForm /> 
-                </MiModal>
-            }  
         </>
     )
 }

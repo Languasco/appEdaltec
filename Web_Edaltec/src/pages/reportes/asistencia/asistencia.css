@@ -1,0 +1,31 @@
+
+.text-right {
+    text-align: right;
+}
+
+
+.text-center {
+    text-align: center;
+}
+
+.title-form {
+    padding: 10px;
+    text-transform: uppercase;
+    text-decoration: underline;
+    font-weight: 800;
+    font-family: 'Montserrat';
+    font-size: 19px;
+}
+
+.MuiFormControl-root.MuiTextField-root {
+    margin-top: 0px;
+    width: 98%;
+}
+
+.MuiCardMedia-img {
+    object-fit: contain !important;
+}
+ 
+.icon-blue {
+    color: blue;
+}

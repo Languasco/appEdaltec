@@ -17,7 +17,7 @@ namespace Datos
         public int id_Marca { get; set; }
         public string nombre_Marca { get; set; }
         public string imagen_Marca { get; set; }
-        public Nullable<int> estado { get; set; }
+        public string id_Estado { get; set; }
         public string usuario_creacion { get; set; }
         public Nullable<System.DateTime> fecha_creacion { get; set; }
         public string usuario_edicion { get; set; }

@@ -65,13 +65,16 @@ const useStyles = makeStyles((theme) => ({
         }   
    }, [flag_modoEdicion])
    
-  const handleSave = ()=>{
+  const handleSave = async()=>{
     if (flag_modoEdicion === true) {     ///-- edicion
 
-        if(validacionesCliente(formParams)===false) return  
+        const valor = await validacionesCliente(formParams, false);
+        if (valor === false) return;
         dispatch(updateCliente({...formParams , usuario_creacion : id_usuarioGlobal } , files));
+        
     }else{  /// nuevo
-        if(validacionesCliente(formParams)===false) return       
+        const valor = await validacionesCliente(formParams, true);
+        if (valor === false) return;
         dispatch(saveCliente({id_Cliente, nombre_Cliente, ruc_cliente, direccion_cliente, estado , usuario_creacion : id_usuarioGlobal} , files  ));        
     }
   }

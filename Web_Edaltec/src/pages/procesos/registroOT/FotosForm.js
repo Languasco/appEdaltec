@@ -47,6 +47,15 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: 'auto',
       marginRight: 'auto'
     },
+    fotoGrilla:{
+      width: '100%',
+      height: '150px!important'
+    },
+    tituloFotoGrilla:{
+      fontSize: '11px',
+      textDecoration: 'underline',
+      color: '#003575'
+    }
   }));
 
 export const FotosForm = () => {
@@ -158,18 +167,18 @@ export const FotosForm = () => {
                         
                     <Row className='p-2'>
                         {fotosTab4.map((foto, index) => (      
-                              <Col key={foto.id_OrdenTrabajo_Foto} xs={6} sm={4} md={4} lg={3}  className='imgContent' >
+                              <Col key={foto.id_OrdenTrabajo_Foto} xs={6} sm={4} md={3} lg={2}  className='imgContent' >
                                 <Card className={classes.rootCard}>
                                     <CardActionArea onClick={()=>handleClickImg(foto)}>
                                         <CardMedia
+                                          className={classes.fotoGrilla}
                                           component="img"
                                           alt="Imagenes OT"
-                                          height="240"
                                           image={foto.Url_Foto_Ubicacion}
                                           title={foto.Url_Foto_Nombre}
                                         />
                                         <CardContent>
-                                          <p> {foto.Url_Foto_Nombre } </p>   
+                                             <p  className={classes.tituloFotoGrilla} > {foto.Url_Foto_Nombre } </p>                                                        
                                         </CardContent>
                                     </CardActionArea>
                                 </Card>

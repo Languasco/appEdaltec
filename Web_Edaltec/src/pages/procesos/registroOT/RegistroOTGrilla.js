@@ -1,9 +1,13 @@
 import React from 'react'
-import {  Button,  Paper  } from '@material-ui/core';
+import {  Button } from '@material-ui/core';
 import {  Row  } from 'react-bootstrap';
 import { DataGrid, esES } from '@material-ui/data-grid'
 import { useDispatch, useSelector } from 'react-redux';
 import { editarRegistroOrdenTrabajo, inicializarTabs, mostrarPDF_ot, mostrarReporte_ot } from '../../../redux/slice/procesos/registroOTSlice';
+
+import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
+import EditIcon from '@material-ui/icons/Edit';
+import EqualizerIcon from '@material-ui/icons/Equalizer';
 
 import  './registroOT.css';
 import CustomColumnMenu from '../../../components/shared/controls/CustomColumnMenu';
@@ -28,7 +32,7 @@ export const RegistroOTGrilla = () => {
         field: "action",
         headerName: "Acciones",
         sortable: false,
-        width: 250 ,
+        width: 350 ,
         renderCell: (params) => {
             const onClick = (e) => {
                     e.stopPropagation(); // don't select this row after clicking     
@@ -49,6 +53,7 @@ export const RegistroOTGrilla = () => {
             <strong>
                 <Button
                     variant="contained"
+                    startIcon={<EditIcon />}
                     color="primary"
                     size="small"
                     style={{ marginLeft: 16 }}
@@ -59,6 +64,7 @@ export const RegistroOTGrilla = () => {
 
                 <Button
                     variant="contained"
+                    startIcon={<PictureAsPdfIcon />}
                     size="small"
                     style={{ marginLeft: 16 }}
                     onClick={onClickPDF}
@@ -69,6 +75,7 @@ export const RegistroOTGrilla = () => {
                 
                 <Button
                     variant="contained"
+                    startIcon={<EqualizerIcon />}
                     size="small"
                     color="secondary"
                     style={{ marginLeft: 16 }}
@@ -99,9 +106,8 @@ export const RegistroOTGrilla = () => {
     dispatch(mostrarReporte_ot(id_OT));
   }  
 
-  return (
- 
-        <Row>
+  return ( 
+        <Row className='mt-1'>
             <div style={{ height: 400, width: '100%' }}>
                 <DataGrid
                     rows={ots_cab}
@@ -115,8 +121,7 @@ export const RegistroOTGrilla = () => {
                     localeText={esES.props.MuiDataGrid.localeText}   
                     components={{
                         ColumnMenu: CustomColumnMenu
-                    }}         
-                          
+                    }}                                   
                 />
             </div>
         </Row> 

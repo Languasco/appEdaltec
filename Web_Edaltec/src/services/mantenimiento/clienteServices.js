@@ -28,12 +28,20 @@ export const clienteServices = ()=>{
         const { data } = await axios.post(URL + 'Uploads/post_imagenCliente?filtros=' + filtro, bodyFormData)       
         return data;
    }
+
+    const validarCliente= (cliente, nroRuc )=>{   
+        const parametros = {
+            'opcion' : 2, 'filtro' : String(cliente) + '|' +  nroRuc
+        }
+        return axios.get(URL + 'tblw_Cliente', {params: parametros});
+    }
  
     return {
         getMostrarInformacion,
         saveCliente,
         updateCliente,
-        upload_imagenCliente
+        upload_imagenCliente,
+        validarCliente
     }
 
 }

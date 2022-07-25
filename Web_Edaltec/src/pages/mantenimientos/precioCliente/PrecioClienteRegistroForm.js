@@ -7,8 +7,10 @@ import SaveIcon from '@material-ui/icons/Save';
 
 import { useForm } from '../../../hooks/useForm';
 import  './precioCliente.css';
-import { verificar_soloNumeros } from '../../../helper/funcionesglobales';
+import { verificar_soloNumeros } from '../../../helper/funcionesglobales'; 
 import { contratoPorCliente, save, update, validaciones } from '../../../redux/slice/mantenimientos/precioClienteSlice';
+import { useComboBuscador } from '../../../hooks/useComboBuscador';
+import { Autocomplete } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -20,6 +22,18 @@ const useStyles = makeStyles((theme) => ({
         minWidth: 180,
     },
   }));
+
+  const initialState = {
+    id_ClienteTipoReparacion:'0', 
+    id_Cliente:'0', 
+    id_Contrato:'0', 
+    id_TipoReparacion:'0', 
+    precio_Cliente:'', 
+    id_Estado:'001',
+    usuario_creacion  : '0'
+}
+
+const valorInicialComboBuscadorTipoReparacion = {id:0 , descripcion:'[--SELECCIONE--]'};   
 
   export const PrecioClienteRegistroForm = () => {    
  
@@ -35,22 +49,15 @@ const useStyles = makeStyles((theme) => ({
     const { clientes,tiposReparacion } = useSelector(state => state.proceso_registroOT);  
     const { contratosCliente } = useSelector(state => state.mant_precioCliente);  
 
-    const initialState = {
-        id_ClienteTipoReparacion:'0', 
-        id_Cliente:'0', 
-        id_Contrato:'0', 
-        id_TipoReparacion:'0', 
-        precio_Cliente:'', 
-        id_Estado:'001',
-        usuario_creacion  : id_usuarioGlobal
-    }
+    const [ tipoReparacionComboBuscador, setTipoReparacionComboBuscador  ] = useComboBuscador(valorInicialComboBuscadorTipoReparacion);
 
-  const [ formParams, handleInputChange, , setFormParams ] = useForm(initialState)
-  const { id_ClienteTipoReparacion, id_Contrato, id_Cliente, id_TipoReparacion, precio_Cliente, id_Estado  } = formParams;
+    const [ formParams, handleInputChange, , setFormParams ] = useForm(initialState)
+    const { id_ClienteTipoReparacion, id_Contrato, id_Cliente, precio_Cliente, id_Estado  } = formParams;
  
     ///---ejecutando una instruccion que va estar pendiente del cambio del estado del activeEvent
     useEffect(() => {
         if (flag_modoEdicion === true) {    
+            setTipoReparacionComboBuscador({ id : objetoEdicion.id_TipoReparacion, descripcion : objetoEdicion.nombre_TipoReparacion});
             setFormParams({...objetoEdicion});
         }   
    }, [flag_modoEdicion, objetoEdicion])
@@ -78,6 +85,15 @@ const useStyles = makeStyles((theme) => ({
   const keyPress=(event) =>{
     verificar_soloNumeros(event);
   }
+
+  const handle_changetipoReparacion = async (value)=>{ 
+
+    if (value === null) return
+    const {id,descripcion} = value;
+
+    setFormParams({...formParams, id_TipoReparacion : id})
+    setTipoReparacionComboBuscador({id,descripcion});
+ } 
     
   return (
    
@@ -139,21 +155,35 @@ const useStyles = makeStyles((theme) => ({
                          <br/>
                         <Row  >
                             <Col md={12} lg={12}  >   
-                                        <FormControl variant="outlined" style= {{width:"100%"}}>
-                                                <InputLabel > Tipo Reparacion </InputLabel>
-                                                <Select
-                                                    name="id_TipoReparacion" 
-                                                    value= { id_TipoReparacion  }  
-                                                    onChange={ handleInputChange }   
-                                                >
-                                                <MenuItem value={0}> SELECCIONE </MenuItem>                
-                                                {
-                                                    tiposReparacion.map((item)=>(
-                                                        <MenuItem key={item.id} value={item.id }> {item.descripcion} </MenuItem>
-                                                    ))
-                                                }
-                                                </Select>
-                                    </FormControl> 
+                                    {/* <FormControl variant="outlined" style= {{width:"100%"}}>
+                                            <InputLabel > Tipo Reparacion </InputLabel>
+                                            <Select
+                                                name="id_TipoReparacion" 
+                                                value= { id_TipoReparacion  }  
+                                                onChange={ handleInputChange }   
+                                            >
+                                            <MenuItem value={0}> SELECCIONE </MenuItem>                
+                                            {
+                                                tiposReparacion.map((item)=>(
+                                                    <MenuItem key={item.id} value={item.id }> {item.descripcion} </MenuItem>
+                                                ))
+                                            }
+                                            </Select>
+                                    </FormControl>  */}
+
+                                <Autocomplete                     
+                                    options={tiposReparacion}
+                                    getOptionLabel={(option) => option.descripcion || ""}
+                                    value={tipoReparacionComboBuscador || null}
+                                    getOptionSelected={(option, value) => option.id === value.id}
+                                    onChange={(event, newValue) => {
+                                        (handle_changetipoReparacion(newValue))
+                                    }}
+                                    renderInput={params => (
+                                        <TextField {...params} label="Tipo Reparacion" placeholder='Busque el Tipo Reparacion' fullWidth />
+                                    )}
+                                /> 
+
                             </Col>
                         </Row> 
  

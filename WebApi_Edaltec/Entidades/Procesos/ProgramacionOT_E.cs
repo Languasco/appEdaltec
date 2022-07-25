@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 
 namespace Entidades.Procesos
 {
-   public  class ProgramacionOT_E
+    public class ProgramacionOT_E
     {
-        public int  id_OrdenProgramacion { get; set; }
-        public int id_Cliente { get; set; }
-        public string  nombre_Cliente { get; set; }
-        public string  fechaProgramacion { get; set; }
-        public string  ges_Empl_DNI_JefeCuadrilla { get; set; }
-        public string  jefeCuadrilla { get; set; }
-        public string  cantidadOrdenes { get; set; }
-        public string  id_Estado { get; set; }
-        public string descripcion_estado { get; set; }
+        public int id_OrdenTrabajo { get; set; }
+        public string area { get; set; }
+        public string numeroOrden { get; set; }
+        public string cliente { get; set; }
+        public string sed { get; set; }
+        public string distrito { get; set; }
+        public string direccion { get; set; }
+        public string jefeCuadrilla { get; set; }
+        public string fechaProgramacion { get; set; }
+        public string fechaProgramacionFormateado { get; set; }
+        public string nroOrden { get; set; }
     }
 }

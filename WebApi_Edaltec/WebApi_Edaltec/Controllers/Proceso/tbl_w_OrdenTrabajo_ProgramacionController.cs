@@ -40,10 +40,10 @@ namespace WebApi_Edaltec.Controllers.Proceso
                     string idCliente = parametros[0].ToString();
                     string fechaInicial = parametros[1].ToString();
                     string fechaFinal = parametros[2].ToString();
-                    string idEstado = parametros[3].ToString();
+                    int TipoProceso = Convert.ToInt32(parametros[3].ToString());
 
                     ProgramacionOT_BL obj_negocio = new ProgramacionOT_BL();    
-                    resul = obj_negocio.get_programacionOT_cab(idCliente, fechaInicial, fechaFinal, idEstado);         
+                    resul = obj_negocio.get_programacionOT_cab(idCliente, fechaInicial, fechaFinal, TipoProceso);         
                 }
                 else if (opcion == 2)
                 {
@@ -85,6 +85,29 @@ namespace WebApi_Edaltec.Controllers.Proceso
                     ProgramacionOT_BL obj_negocio = new ProgramacionOT_BL();
                     res.ok = true;
                     res.data = obj_negocio.get_ProgramacionOT_cliente(id_Cliente);
+                    resul = res;
+                }
+                else if (opcion == 6)
+                {
+                    string[] parametros = filtro.Split('|');
+                    int id_Cliente = Convert.ToInt32(parametros[0].ToString());
+                    string fechaProgramacion = parametros[1].ToString();
+                    string coordinador = parametros[2].ToString();
+                    int id_vehiculo = Convert.ToInt32(parametros[3].ToString());
+                    string idProgramacionMasivo = parametros[4].ToString();
+                    string idusuario = parametros[5].ToString();
+
+                    ProgramacionOT_BL obj_negocio = new ProgramacionOT_BL(); 
+                    resul = obj_negocio.set_ActualizarProgramacionCab(id_Cliente, fechaProgramacion, coordinador, id_vehiculo, idProgramacionMasivo, idusuario); 
+                }
+                else if (opcion == 7)
+                {
+                    string[] parametros = filtro.Split('|');
+                    int id_OrdenTrabajo = Convert.ToInt32(parametros[0].ToString());
+
+                    ProgramacionOT_BL obj_negocio = new ProgramacionOT_BL();
+                    res.ok = true;
+                    res.data = obj_negocio.get_programacionTrabajoEdicion(id_OrdenTrabajo);
                     resul = res;
                 }
                 else

@@ -21,6 +21,26 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
+  const initialState = {
+    id_Vehiculo:'0',
+    id_TipoVehiculo:'0',
+    nroPlaca_Vehiculo:'',
+    id_Marca:'0',
+    modelo_vehiculo:'',
+    color_Vehiculo:'',
+    nroMotor_Vehiculo:'',
+    nroChasis_Vehiculo:'',
+    id_Categoria:'0',
+    id_Carroceria:'0',
+    anio_Vehiculo:'',
+    cilidraje_Vehiculo:'',
+    kmInicial_Vehiculo:'',
+    kmMant_Vehiculo:'',
+    dni_Conductor:'0',
+    id_Estado:'001',
+    usuario_creacion  : '0'
+}
+
   export const VehiculoRegistroForm = () => {    
  
     const { id : id_usuarioGlobal } = useSelector(state => state.login);  
@@ -29,36 +49,13 @@ const useStyles = makeStyles((theme) => ({
     const dispatch = useDispatch();     
 
     //---utilizando datos de reducer----
-    const { flag_modoEdicion} = useSelector(state => state.flagEdicion );
-    const { objetoEdicion } = useSelector(state => state.objetoEdicion );
-
- 
-    const { tiposVehiculos, marcasVehiculos, categoriasVehiculos, carroceriasVehiculos,dniConductores } = useSelector(state => state.mant_vehiculo);  
-
-    const initialState = {
-        id_Vehiculo:'0',
-        id_TipoVehiculo:'0',
-        nroPlaca_Vehiculo:'',
-        id_Marca:'0',
-        modelo_vehiculo:'',
-        color_Vehiculo:'',
-        nroMotor_Vehiculo:'',
-        nroChasis_Vehiculo:'',
-        id_Categoria:'0',
-        id_Carroceria:'0',
-        anio_Vehiculo:'',
-        cilidraje_Vehiculo:'',
-        kmInicial_Vehiculo:'',
-        kmMant_Vehiculo:'',
-        dni_Conductor:'0',
-        id_Estado:'001',
-        usuario_creacion  : id_usuarioGlobal
-    }
+  const { flag_modoEdicion} = useSelector(state => state.flagEdicion );
+  const { objetoEdicion } = useSelector(state => state.objetoEdicion ); 
+  const { tiposVehiculos, marcasVehiculos, carroceriasVehiculos,dniConductores } = useSelector(state => state.mant_vehiculo);  
 
   const [ formParams, handleInputChange, , setFormParams ] = useForm(initialState);
   const {
-    id_TipoVehiculo, nroPlaca_Vehiculo, id_Marca, modelo_vehiculo, color_Vehiculo, nroMotor_Vehiculo, nroChasis_Vehiculo, id_Categoria, 
-    id_Carroceria, anio_Vehiculo, cilidraje_Vehiculo, kmInicial_Vehiculo, kmMant_Vehiculo, dni_Conductor, id_Estado 
+    id_TipoVehiculo, nroPlaca_Vehiculo, id_Marca, modelo_vehiculo, color_Vehiculo, nroMotor_Vehiculo, nroChasis_Vehiculo, id_Carroceria, anio_Vehiculo, cilidraje_Vehiculo, kmInicial_Vehiculo, kmMant_Vehiculo, dni_Conductor, id_Estado 
   } = formParams;
 
     ///---ejecutando una instruccion que va estar pendiente del cambio del estado del activeEvent
@@ -92,8 +89,7 @@ const useStyles = makeStyles((theme) => ({
     setFormParams({...formParams, id_Categoria : target.value, id_Carroceria: '0'})
     await dispatch(carroceriaTipoVehiculo(target.value)); 
   } 
- 
-    
+     
   return (
    
     <Paper elevation={3}   >
@@ -178,7 +174,7 @@ const useStyles = makeStyles((theme) => ({
                         </Row>  
    
                            <Row >
-                            <Col md={6} lg={6}  className='mt-3'>   
+                            {/* <Col md={6} lg={6}  className='mt-3'>   
                                 <FormControl variant="outlined" style= {{width:"100%"}} >
                                     <InputLabel id="demo-simple-select-label"> Categoria </InputLabel>
                                     <Select
@@ -196,7 +192,7 @@ const useStyles = makeStyles((theme) => ({
                                         }
                                     </Select>
                                 </FormControl>           
-                            </Col>
+                            </Col> */}
                             <Col md={6} lg={6}  className='mt-3'>   
                                 <FormControl variant="outlined" style= {{width:"100%"}} >
                                     <InputLabel id="demo-simple-select-label"> Carroceria </InputLabel>

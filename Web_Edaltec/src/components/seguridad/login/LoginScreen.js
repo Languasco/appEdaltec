@@ -14,7 +14,8 @@ export const LoginScreen = () => {
      //----usando el hook  redux
      const dispatch = useDispatch();     
 
-     const [ formParams, handleInputChange ] = useForm({ usuario : 'D', password : '123' })
+    //  const [ formParams, handleInputChange ] = useForm({ usuario : 'D', password : '123' })
+    const [ formParams, handleInputChange ] = useForm({ usuario : '', password : '' })
      const { usuario, password } = formParams;
 
      ///---- cargando el spinner -------

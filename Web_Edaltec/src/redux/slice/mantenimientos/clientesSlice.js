@@ -65,8 +65,7 @@ const clientesSlice = createSlice({
     }
   } 
 
-  export const validacionesCliente = ({ nombre_Cliente, ruc_cliente, direccion_cliente })=>{    
-
+  export const validacionesCliente = async({ nombre_Cliente, ruc_cliente, direccion_cliente }, esNuevo)=>{    
     if (ruc_cliente === null || ruc_cliente === '') {
         Swal_alert('error','Por favor ingrese el ruc del cliente');
         return false;
@@ -75,6 +74,18 @@ const clientesSlice = createSlice({
       Swal_alert('error','Por favor ingrese la descripcion del cliente');
       return false;
     }
+
+    if ( esNuevo === true ) {
+      const {data : res}  = await clienteServices().validarCliente(  nombre_Cliente, String(ruc_cliente).trim(), );
+      if (res.ok) {
+        if (res.data) {
+          Swal_alert('error','El nombre del cliente y el Ruc ya esta registrado, verifique..');
+          return false;
+        }
+      }
+    }
+
+
     if (direccion_cliente === null || direccion_cliente === '') {
       Swal_alert('error','Por favor ingrese la direccion del cliente');
       return false;

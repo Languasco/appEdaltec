@@ -1,7 +1,6 @@
 import React  from 'react';
-import {  Button, FormControl, InputLabel, makeStyles, MenuItem, Paper, Select, TextField } from '@material-ui/core' 
+import {  Button, makeStyles,  Paper, Snackbar, TextField } from '@material-ui/core' 
 import { Col, Row, Table  } from 'react-bootstrap';
-import { MiButton } from '../../../components/shared/controls/MiButton';
 import Tooltip from '@material-ui/core/Tooltip';
 
 import SaveIcon from '@material-ui/icons/Save';
@@ -14,7 +13,10 @@ import { agregarMetrados, anularMetrados, set_formParamsMetrados, validacionesMe
 import { Swal_Question } from '../../../helper/alertas';
 import { verificar_soloNumeros } from '../../../helper/funcionesglobales';
 import { TipoReparacionMontosOT } from './TipoReparacionMontosOT';
-
+import { Alert, AlertTitle, Autocomplete } from '@material-ui/lab';
+import { useComboBuscador } from '../../../hooks/useComboBuscador';
+import { useNotificacion } from '../../../hooks/useNotificacion';
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
   
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,7 +30,13 @@ const useStyles = makeStyles((theme) => ({
       flexGrow: 1,
       backgroundColor: theme.palette.background.paper,
     },
+    marginComboBuscador : {
+        margin: '1px 0px 5px 10px'
+    }
   }));
+
+  const valorInicialComboBuscadorTipoReparacion = {id:0 , descripcion:'[--SELECCIONE--]'};   
+
 
 export const MetradosForm = () => {
 
@@ -39,8 +47,18 @@ export const MetradosForm = () => {
 
     const { id : id_usuarioGlobal } = useSelector(state => state.login);  
     const { tiposReparacion, metrados , formParamsMetrados, id_OrdenTrabajo_Global } = useSelector(state => state.proceso_registroOT);   
+    const { largo, ancho, espesor } = formParamsMetrados;
 
-    const { idTipoReparacion, largo, ancho, espesor } = formParamsMetrados;
+    const [ tipoReparacionComboBuscador, setTipoReparacionComboBuscador  ] = useComboBuscador(valorInicialComboBuscadorTipoReparacion);
+
+        //  //----- notificaciones-----
+        const {  notification, openNotification, closeNotification, objNotification, assignNotification } = useNotificacion({
+        nombre_usuario_creacion : '',
+        fecha_creacion : '',
+        nombre_usuario_edicion : '',
+        fecha_edicion:  ''
+    })
+
 
     const handleInputChange = ({ target }) => {
         dispatch(set_formParamsMetrados({
@@ -75,14 +93,17 @@ export const MetradosForm = () => {
         })        
     }
     
-    const handleClickEditar = ({ id_OrdenTrabajo_Metrado, id_TipoRepracion, largo_Metrado, ancho_Metrado, espesor_Metrado  })=>{ 
+    const handleClickEditar = ({ id_OrdenTrabajo_Metrado, id_TipoRepracion, nombre_TipoReparacion, largo_Metrado, ancho_Metrado, espesor_Metrado  })=>{ 
+
         dispatch(set_formParamsMetrados({
             id_OrdenTrabajo_Metrado: id_OrdenTrabajo_Metrado,
             idTipoReparacion: id_TipoRepracion,
             largo : largo_Metrado, 
             ancho : ancho_Metrado, 
             espesor : espesor_Metrado, 
-        }))
+        }));
+
+        setTipoReparacionComboBuscador({id : id_TipoRepracion ,descripcion : nombre_TipoReparacion});
     }   
 
     const keyPress=(event) =>{
@@ -97,6 +118,34 @@ export const MetradosForm = () => {
        }
     }
 
+    const handle_changetipoReparacion = async (value)=>{ 
+        if (value === null) return
+        const {id,descripcion} = value;   
+
+        dispatch(set_formParamsMetrados({
+                ...formParamsMetrados, idTipoReparacion : id
+            }                 
+        ))
+
+        setTipoReparacionComboBuscador({id,descripcion});
+        setTimeout(() => {
+            document.getElementById('largo').focus();
+        }, 0);         
+     } 
+     
+     const handleClick_Auditoria = ({nombre_usuario_creacion, fecha_creacion, nombre_usuario_edicion, fecha_edicion })=>{  
+        openNotification(true);
+        assignNotification({
+                nombre_usuario_creacion,
+                fecha_creacion,
+                nombre_usuario_edicion ,
+                fecha_edicion,
+        })
+    }  
+
+
+
+
   return (
 
     <form className={classes.formControl} noValidate autoComplete="off">
@@ -108,21 +157,19 @@ export const MetradosForm = () => {
                    </div> 
                    <Row>
                         <Col sm={6} md={3} lg={3} >
-                            <FormControl variant="outlined" className={classes.formControl} >
-                                            <InputLabel> Tipo de Reparacion</InputLabel>
-                                            <Select
-                                                name="idTipoReparacion" 
-                                                value= { idTipoReparacion  }  
-                                                onChange={ handleInputChange }   
-                                            >
-                                                <MenuItem value={0}> [--Seleccione--] </MenuItem>                
-                                                {
-                                                    tiposReparacion.map((item)=>(
-                                                        <MenuItem key={item.id} value={item.id }> {item.descripcion} </MenuItem>
-                                                    ))
-                                                }
-                                            </Select>
-                            </FormControl>  
+                            <Autocomplete   
+                                className={classes.marginComboBuscador}                  
+                                options={tiposReparacion}
+                                getOptionLabel={(option) => option.descripcion || ""}
+                                value={tipoReparacionComboBuscador || null}
+                                getOptionSelected={(option, value) => option.id === value.id}
+                                onChange={(event, newValue) => {
+                                    (handle_changetipoReparacion(newValue))
+                                }}
+                                renderInput={params => (
+                                    <TextField {...params} label=" Tipo Reparacion" placeholder='Busque el Tipo Reparacion' fullWidth />
+                                )}
+                            /> 
                         </Col>
                         <Col sm={3} md={2} lg={2} >
                             <TextField id='largo'  className={classes.formControl}  label="largo" name="largo" value= { largo  } onKeyDown={(e)=>handleKeyDown(e,'ancho')}   onChange={ handleInputChange }  onKeyPress= {(e) => keyPress(e)}   />
@@ -158,6 +205,7 @@ export const MetradosForm = () => {
                                                 <th className='text-center'> LARGO </th>
                                                 <th className='text-center'> ANCHO </th>
                                                 <th className='text-center'> ESPESOR </th>
+                                                <th className='text-center'> TOTAL </th>
                                                 <th className='text-center'> ACCIONES </th>
                                             </tr>
                                         </thead>
@@ -177,12 +225,16 @@ export const MetradosForm = () => {
                                                             <td className='text-right'>  
                                                                 {item.espesor_Metrado}              
                                                             </td>
+                                                            <td className='text-right'>  
+                                                                {item.total_Metrado}              
+                                                            </td>
                                                             <td className='text-center'>
-                                                                <div className='text-center' style={{width : '200px' , marginBottom: '-7px', marginTop: '-7px' }}>
-                                                                    <Button   startIcon={<EditIcon />}  variant="contained" color="primary"  onClick={ ()=> handleClickEditar(item) }> Editar </Button>  
+                                                                <div className='text-center' style={{width : '300px' , marginBottom: '-7px', marginTop: '-7px' }}>
+                                                                        <Button   startIcon={<EditIcon />}  variant="contained" color="primary"  onClick={ ()=> handleClickEditar(item) }>  </Button>  
                                                                         {
-                                                                            item.id_Estado !==0  &&  <MiButton  startIcon={<BlockIcon />}  variant="contained" color="secondary"  text= 'Anular' onClick={ ()=> handleClick_Anular(item) }></MiButton>  
-                                                                        }                                                          
+                                                                            item.id_Estado !==0  &&  <Button  startIcon={<BlockIcon />}  variant="contained" color="secondary" onClick={ ()=> handleClick_Anular(item) }></Button>  
+                                                                        }   
+                                                                        <Button  startIcon={<LibraryBooksIcon />} style={{color:'white', backgroundColor: '#13b013'}}  variant="contained"   onClick={ ()=> handleClick_Auditoria(item) } > </Button>                                                        
                                                                 </div>    
                                                             </td>
                                                         </tr>
@@ -201,6 +253,20 @@ export const MetradosForm = () => {
                 </Paper> 
             </Col> 
         </Row>    
+
+        
+        <Snackbar open={notification}        
+                anchorOrigin={{vertical: 'top', horizontal: 'right'} }   
+                autoHideDuration={3000} onClose={closeNotification}>
+            <Alert onClose={closeNotification} severity="success">
+            <AlertTitle>   Auditoria </AlertTitle>                        
+            Usuario Creacion : { objNotification.nombre_usuario_creacion } — <strong> {objNotification.fecha_creacion} </strong> 
+                <br></br>       
+                <hr/>   
+            Usuario Edicion : { objNotification.nombre_usuario_edicion } — <strong> {objNotification.fecha_edicion} </strong> 
+            </Alert>                    
+        </Snackbar>
+
     </form>
 
   )

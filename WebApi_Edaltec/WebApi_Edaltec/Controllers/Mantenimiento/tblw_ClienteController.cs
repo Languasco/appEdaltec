@@ -43,6 +43,19 @@ namespace WebApi_Edaltec.Controllers.Mantenimiento
                     res.data = obj_negocio.get_clientesCab(Pub_Esta_Codigo);
                     resul = res;
                 }
+                else if (opcion == 2)
+                {
+                    string[] parametros = filtro.Split('|');
+                    string nombreCliente = parametros[0].ToString();
+                    string nroRuc = parametros[1].ToString();
+
+                    var cantidad = db.tbl_w_Cliente.Count(e => (e.nombre_Cliente).ToLower() == nombreCliente.ToLower()  && e.ruc_cliente.Trim() == nroRuc.Trim() );
+
+                    res.ok = true;
+                    res.data = cantidad > 0 ? true : false;
+                    resul = res;
+
+                }
                 else
                 {
                     resul = "Opcion seleccionada invalida";

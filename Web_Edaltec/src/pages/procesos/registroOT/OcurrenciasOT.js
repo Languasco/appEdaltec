@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import {  Button, Fab, TextField } from '@material-ui/core' 
 import { Col, Row, Table  } from 'react-bootstrap';
 import { MiButton } from '../../../components/shared/controls/MiButton';
@@ -15,7 +15,7 @@ import { Swal_alert } from '../../../helper/alertas';
 import {Card, CardContent} from '@material-ui/core';
 import { useForm } from '../../../hooks/useForm';
 
-export const OcurrenciasOT = () => {
+export const OcurrenciasOT = memo(() => {
 
    //----usando el hook  redux
     const dispatch = useDispatch();  
@@ -61,6 +61,7 @@ export const OcurrenciasOT = () => {
        dispatch(descargarOcurrencias(id_OrdenTrabajo_Global));
     } 
 
+    console.log('me renderice nuevmaente')
   return (    
     <Card> 
         <CardContent>
@@ -95,7 +96,7 @@ export const OcurrenciasOT = () => {
                                             <div className='centerOcurrencia' >
                                                 <TextField   multiline  rows={4}   name="ocurrencia"   value= { item.descripcion_Ocurrencia_formato }    />           
                                                 <Tooltip title="Editar Ocurrencia" placement="top-start">
-                                                    <Button   startIcon={<EditIcon />}  variant="contained" color="primary"  text= 'Editar' onClick={ ()=> handleClickEditar(item) }> Editar </Button>                                                                            
+                                                    <Button   startIcon={<EditIcon />}  variant="contained" color="primary"  text= 'Editar' onClick={ ()=> handleClickEditar(item) }> </Button>                                                                            
                                                 </Tooltip>  
                                             </div>   
                                         </td>
@@ -108,5 +109,5 @@ export const OcurrenciasOT = () => {
         </CardContent> 
     </Card>
   )
-}
+})
 

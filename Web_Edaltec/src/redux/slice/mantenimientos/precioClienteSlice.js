@@ -12,6 +12,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const initialState = {
     preciosClientes : [],
+    contratosClienteFiltro : [],
     contratosCliente : []
  }
 
@@ -25,11 +26,17 @@ const precioClienteSlice = createSlice({
                 preciosClientes : action.payload
             }
         },
-        listContratosCliente(state, action){
+        listContratosClienteFiltro(state, action){
             return {
                 ...state,
-                contratosCliente : action.payload
+                contratosClienteFiltro : action.payload
             } 
+        },
+        listContratosCliente(state, action){
+          return {
+              ...state,
+              contratosCliente : action.payload
+          } 
         },
         refrescandoEstadoPrecioCliente(state, action){
             return {
@@ -55,12 +62,15 @@ export const getCargarCombos = ()=>{
             .then(([ _clientes, _tipoReparaciones ])  => {
             Swal.close();    
             if (_clientes.ok) {
-               dispatch( listClientes(_clientes.data))
+
+               let clientePrecio = [{id:0 , descripcion:'[--SELECCIONE--]' },  ..._clientes.data];      
+               dispatch( listClientes(clientePrecio))
             }else{
               alert(JSON.stringify(_clientes.data));
             } 
             if (_tipoReparaciones.ok) {
-             dispatch( getTiposReparacion(_tipoReparaciones.data))
+              let tiposReparaciones = [{id:0 , descripcion:'[--SELECCIONE--]' },  ..._tipoReparaciones.data];     
+             dispatch( getTiposReparacion(tiposReparaciones))
             }else{
               alert(JSON.stringify(_tipoReparaciones.data));
             } 
@@ -207,6 +217,7 @@ export const getCargarCombos = ()=>{
               dispatch(modalTitle('EDITAR PRECIO REPARACION CLIENTE'));                    
               dispatch(objectoEdicion(objEdicion)); 
               dispatch(modalOpen());
+              
             }else{
               alert(JSON.stringify(res.data));
             }          
@@ -272,6 +283,35 @@ export const getCargarCombos = ()=>{
   }
 
 
+  export const contratoPorClienteFiltro =(idCliente)=>{
+    return  async(dispatch)=>{ 
+      try {
+
+         if (String(idCliente) === '0') {
+            dispatch(listContratosClienteFiltro([])); 
+         }else{
+            Swal.fire({
+              icon: 'info', allowOutsideClick: false, allowEscapeKey: false, text: 'Obteniendo los contratos, Espere por favor'
+            })
+            Swal.showLoading();
+            const res = await precioClienteServices().getContratoPorCliente(idCliente);
+            Swal.close();
+            if (res.ok) {   
+              dispatch(listContratosClienteFiltro(res.data)); 
+              return true;
+            }else{
+              alert(JSON.stringify(res.data));
+              return false;
+            } 
+         }
+      } catch (error) {
+        Swal.close();
+        console.log(JSON.stringify(error))
+        alert(JSON.stringify(error));
+      } 
+    }
+  }
+  
   export const contratoPorCliente =(idCliente)=>{
     return  async(dispatch)=>{ 
       try {
@@ -300,11 +340,10 @@ export const getCargarCombos = ()=>{
       } 
     }
   }
-  
 
 
 
 
-export const { listMantPreciosClienteCab, listContratosCliente,refrescandoEstadoPrecioCliente  } = precioClienteSlice.actions;
+export const { listMantPreciosClienteCab, listContratosCliente, listContratosClienteFiltro, refrescandoEstadoPrecioCliente  } = precioClienteSlice.actions;
 
 export default precioClienteSlice.reducer;

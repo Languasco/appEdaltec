@@ -16,6 +16,7 @@ export default function MiDatepicker({valueDate, setDate, name, labelText }) {
     <div className='p-1'>
       <MuiPickersUtilsProvider locale={deLocale}  utils={DateFnsUtils}>
           <KeyboardDatePicker
+            autoOk
             disableToolbar
             variant="inline"
             format="dd/MM/yyyy"

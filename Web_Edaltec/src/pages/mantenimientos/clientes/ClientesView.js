@@ -13,7 +13,6 @@ export const ClientesView = () => {
     return (
         <> 
           <ClientesFiltros />            
-           <br/> 
            <ClientesGrilla />
             {
                 showModal &&   

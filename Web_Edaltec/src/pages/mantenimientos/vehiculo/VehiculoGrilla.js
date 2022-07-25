@@ -1,5 +1,5 @@
 import React from 'react'
-import {  Button,  Paper  } from '@material-ui/core';
+import {  Button,  Paper, Snackbar  } from '@material-ui/core';
 import {  Row  } from 'react-bootstrap';
 import { DataGrid, esES } from '@material-ui/data-grid'
 import {  useDispatch, useSelector } from 'react-redux';
@@ -8,6 +8,9 @@ import { anular, editar } from '../../../redux/slice/mantenimientos/vehiculoSlic
 import EditIcon from '@material-ui/icons/Edit';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { Swal_Question } from '../../../helper/alertas';
+import { Alert, AlertTitle } from '@material-ui/lab';
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
+import { useNotificacion } from '../../../hooks/useNotificacion';
 
 
 export const VehiculoGrilla = () => {
@@ -17,21 +20,28 @@ export const VehiculoGrilla = () => {
   const { vehiculo } = useSelector(state => state.mant_vehiculo);  
   const { id : id_usuarioGlobal } = useSelector(state => state.login);  
 
-  const columns = [
-    { field: 'id_Vehiculo', headerName: 'ID', width: 120 },
-    { field: 'nroPlaca_Vehiculo', headerName: 'PLACA ', width: 155 },
-    { field: 'anio_Vehiculo', headerName: 'ANIO', width: 155 },
-    { field: 'modelo_vehiculo', headerName: 'MODELO', width: 300 },
+    //  //----- notificaciones-----
+    const {  notification, openNotification, closeNotification, objNotification, assignNotification } = useNotificacion({
+        nombre_usuario_creacion : '',
+        fecha_creacion : '',
+        nombre_usuario_edicion : '',
+        fecha_edicion:  ''
+    })  
 
-    { field: 'nombre_TipoVehiculo', headerName: 'TIPO', width: 250 },
-    { field: 'nombre_Categoria', headerName: 'CATEGORIA', width: 300 },
-    { field: 'nombre_Carroceria', headerName: 'CARROCERIA', width: 300 },
-    { field: 'descripcion_estado', headerName: 'ESTADO', width: 150},
+  const columns = [
+    { field: 'id_Vehiculo', headerName: 'ID', width: 80 , sortable: false },
+    { field: 'nroPlaca_Vehiculo', headerName: 'PLACA ', width: 116 },
+    { field: 'anio_Vehiculo', headerName: 'ANIO', width: 108 },
+    { field: 'modelo_vehiculo', headerName: 'MODELO', width: 250 },
+    { field: 'nombre_TipoVehiculo', headerName: 'TIPO', width: 160 },
+    // { field: 'nombre_Categoria', headerName: 'CATEGORIA', width: 160 },
+    { field: 'nombre_Carroceria', headerName: 'CARROCERIA', width: 180 },
+    { field: 'descripcion_estado', headerName: 'ESTADO', width: 130},
     {
         field: "action",
         headerName: "ACCIONES",
         sortable: false,
-        width: 250,
+        width: 450,
         renderCell: (params) => {
             const onClick = (e) => {
                 e.stopPropagation(); // don't select this row after clicking     
@@ -41,7 +51,10 @@ export const VehiculoGrilla = () => {
                 e.stopPropagation(); // don't select this row after clicking     
                 handleClick_Anular(params.row)
             };             
-
+            const onClickAuditoria = (e) => {
+                e.stopPropagation(); // don't select this row after clicking     
+                handleClick_Auditoria(params.row);
+            }; 
             return (
                 <strong>
                     <Button
@@ -56,7 +69,9 @@ export const VehiculoGrilla = () => {
                     </Button>
                     {
                       params.row.id_Estado !=='002'  &&  <Button  startIcon={<CancelIcon />}  variant="contained" color="secondary"   onClick={onClickAnular}> Anular </Button>  
-                    }                     
+                    }   
+                <Button  startIcon={<LibraryBooksIcon />} style={{color:'white', backgroundColor: '#13b013'}}  variant="contained"   onClick={onClickAuditoria} > Auditoria </Button>   
+
                 </strong>                
             )
         }
@@ -76,8 +91,18 @@ export const VehiculoGrilla = () => {
     })  
   }     
 
+  const handleClick_Auditoria = ({nombre_usuario_creacion, fecha_creacion, nombre_usuario_edicion, fecha_edicion })=>{  
+    openNotification(true);
+    assignNotification({
+            nombre_usuario_creacion,
+            fecha_creacion,
+            nombre_usuario_edicion ,
+            fecha_edicion,
+    })
+}  
+
   return (
-    <Paper>
+    <Paper className='mt-1'>
         <Row>
             <div style={{ height: 500, width: '100%' }}>
                 <DataGrid
@@ -97,6 +122,20 @@ export const VehiculoGrilla = () => {
                 />
             </div>
         </Row> 
+
+
+        <Snackbar open={notification}        
+                anchorOrigin={{vertical: 'top', horizontal: 'right'} }   
+                autoHideDuration={3000} onClose={closeNotification}>
+            <Alert onClose={closeNotification} severity="success">
+            <AlertTitle>   Auditoria </AlertTitle>                        
+            Usuario Creacion : { objNotification.nombre_usuario_creacion } — <strong> {objNotification.fecha_creacion} </strong> 
+                <br></br>       
+                <hr/>   
+            Usuario Edicion : { objNotification.nombre_usuario_edicion } — <strong> {objNotification.fecha_edicion} </strong> 
+            </Alert>                    
+        </Snackbar>
+
     </Paper>
   )
 }

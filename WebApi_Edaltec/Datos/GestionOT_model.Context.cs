@@ -41,12 +41,12 @@ namespace Datos
         public virtual DbSet<tbl_w_TiposObras> tbl_w_TiposObras { get; set; }
         public virtual DbSet<Pub_Estados> Pub_Estados { get; set; }
         public virtual DbSet<tbl_w_Cliente_TipoReparacion> tbl_w_Cliente_TipoReparacion { get; set; }
-        public virtual DbSet<tbl_w_Contrato> tbl_w_Contrato { get; set; }
         public virtual DbSet<tbl_w_Carroceria_Vehiculo> tbl_w_Carroceria_Vehiculo { get; set; }
         public virtual DbSet<tbl_w_Categoria_Vehiculo> tbl_w_Categoria_Vehiculo { get; set; }
-        public virtual DbSet<tbl_w_Marca_Vehiculo> tbl_w_Marca_Vehiculo { get; set; }
         public virtual DbSet<tbl_w_Tipo_Vehiculo> tbl_w_Tipo_Vehiculo { get; set; }
         public virtual DbSet<tbl_w_Vehiculo> tbl_w_Vehiculo { get; set; }
         public virtual DbSet<tbl_w_OrdenTrabajo_Programacion> tbl_w_OrdenTrabajo_Programacion { get; set; }
+        public virtual DbSet<tbl_w_Contrato> tbl_w_Contrato { get; set; }
+        public virtual DbSet<tbl_w_Marca_Vehiculo> tbl_w_Marca_Vehiculo { get; set; }
     }
 }

@@ -9,8 +9,8 @@ export const TiposReparacionMultiple = () => {
     //----usando el hook  redux
     const dispatch = useDispatch();  
     const { tiposReparacion, tiposReparacionesMultiple } = useSelector(state => state.proceso_registroOT);    
-  return ( 
-    <Paper className="m-2 "  >
+   return ( 
+    <Paper className="m-1 "  >
         <div className='title-form' >
             <h6>  Tipos de Reparacion </h6>
         </div>

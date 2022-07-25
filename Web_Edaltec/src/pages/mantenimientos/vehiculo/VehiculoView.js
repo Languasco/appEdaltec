@@ -19,7 +19,6 @@ export const VehiculoView = () => {
     return (
         <> 
           <VehiculoFiltros/>            
-           <br/> 
            <VehiculoGrilla />
             {
                 showModal &&   

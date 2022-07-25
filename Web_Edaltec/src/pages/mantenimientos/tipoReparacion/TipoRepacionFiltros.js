@@ -4,6 +4,8 @@ import { Col, Row  } from 'react-bootstrap';
  
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../../hooks/useForm';
+import RefreshIcon from '@material-ui/icons/Refresh';
+import AddIcon from '@material-ui/icons/Add';
 
 import {Card, CardContent} from '@material-ui/core';
 import { nuevo, mostrarInformacion } from '../../../redux/slice/mantenimientos/tipoReparacionSlice';
@@ -51,11 +53,11 @@ export const TipoRepacionFiltros = () => {
   return (    
     <Card> 
         <CardContent>
-            <div className='title-form' >
-                <h4> Mantenimiento de Tipo de Reparacion </h4>
+        <div>
+                <p className='titleFormAlternative'>  MANTENIMIENTO DE TIPO DE REPARACION </p>
             </div>
-            <hr/>            
-            <Row  className='mt-4'> 
+ 
+            <Row  className='mt-1 mb-0'>
                 <Col sm={6}  md={6}  >
                         <FormControl variant="outlined" className={classes.formControl} >
                             <InputLabel id="Pub_Esta_Codigo"> Estado </InputLabel>
@@ -72,8 +74,8 @@ export const TipoRepacionFiltros = () => {
                         </FormControl>
                 </Col>
                 <Col sm={6}  md={6}  className="text-center"   >
-                    <Button variant="contained" onClick= { handleClickMostrar } >Mostrar</Button>
-                    <Button  variant="contained" color="primary"   onClick={ handleClick_nuevo }> Nuevo </Button>  
+                <Button  startIcon={<RefreshIcon/>}   variant="contained" onClick= { handleClickMostrar } >Mostrar</Button>
+                    <Button  startIcon={<AddIcon/>}  variant="contained" color="primary"   onClick={ handleClick_nuevo }> Nuevo </Button>     
                 </Col>
             </Row>       
         </CardContent> 

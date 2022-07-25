@@ -228,7 +228,7 @@
           <Property Name="id_Marca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_Marca" Type="varchar" MaxLength="100" />
           <Property Name="imagen_Marca" Type="varchar" MaxLength="150" />
-          <Property Name="estado" Type="int" />
+          <Property Name="id_Estado" Type="varchar" MaxLength="3" />
           <Property Name="usuario_creacion" Type="varchar" MaxLength="6" />
           <Property Name="fecha_creacion" Type="datetime" />
           <Property Name="usuario_edicion" Type="varchar" MaxLength="6" />
@@ -673,13 +673,13 @@
           <EntitySet Name="tbl_w_TiposObras" EntityType="MFSoft_Base_EdaltecModel.tbl_w_TiposObras" />
           <EntitySet Name="Pub_Estados" EntityType="MFSoft_Base_EdaltecModel.Pub_Estados" />
           <EntitySet Name="tbl_w_Cliente_TipoReparacion" EntityType="MFSoft_Base_EdaltecModel.tbl_w_Cliente_TipoReparacion" />
-          <EntitySet Name="tbl_w_Contrato" EntityType="MFSoft_Base_EdaltecModel.tbl_w_Contrato" />
           <EntitySet Name="tbl_w_Carroceria_Vehiculo" EntityType="MFSoft_Base_EdaltecModel.tbl_w_Carroceria_Vehiculo" />
           <EntitySet Name="tbl_w_Categoria_Vehiculo" EntityType="MFSoft_Base_EdaltecModel.tbl_w_Categoria_Vehiculo" />
-          <EntitySet Name="tbl_w_Marca_Vehiculo" EntityType="MFSoft_Base_EdaltecModel.tbl_w_Marca_Vehiculo" />
           <EntitySet Name="tbl_w_Tipo_Vehiculo" EntityType="MFSoft_Base_EdaltecModel.tbl_w_Tipo_Vehiculo" />
           <EntitySet Name="tbl_w_Vehiculo" EntityType="MFSoft_Base_EdaltecModel.tbl_w_Vehiculo" />
           <EntitySet Name="tbl_w_OrdenTrabajo_Programacion" EntityType="MFSoft_Base_EdaltecModel.tbl_w_OrdenTrabajo_Programacion" />
+          <EntitySet Name="tbl_w_Contrato" EntityType="MFSoft_Base_EdaltecModel.tbl_w_Contrato" />
+          <EntitySet Name="tbl_w_Marca_Vehiculo" EntityType="MFSoft_Base_EdaltecModel.tbl_w_Marca_Vehiculo" />
         </EntityContainer>
         <EntityType Name="tbl_w_OT_Cab">
           <Key>
@@ -989,22 +989,6 @@
           <Property Name="usuario_edicion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="tbl_w_Contrato">
-          <Key>
-            <PropertyRef Name="id_Contrato" />
-          </Key>
-          <Property Name="id_Contrato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_Cliente" Type="Int32" />
-          <Property Name="numero_Contrato" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="observaciones_Contrato" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="fechaInicio" Type="DateTime" Precision="3" />
-          <Property Name="fechaFinal" Type="DateTime" Precision="3" />
-          <Property Name="id_Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="usuario_creacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
-          <Property Name="usuario_edicion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="tbl_w_Carroceria_Vehiculo">
           <Key>
             <PropertyRef Name="id_Carroceria" />
@@ -1025,19 +1009,6 @@
           <Property Name="id_Categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_TipoVehiculo" Type="Int32" />
           <Property Name="nombre_Categoria" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="estado" Type="Int32" />
-          <Property Name="usuario_creacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
-          <Property Name="usuario_edicion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="tbl_w_Marca_Vehiculo">
-          <Key>
-            <PropertyRef Name="id_Marca" />
-          </Key>
-          <Property Name="id_Marca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre_Marca" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="imagen_Marca" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="estado" Type="Int32" />
           <Property Name="usuario_creacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
@@ -1097,6 +1068,35 @@
           <Property Name="numero_Orden_Programa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="id_Distrito_Programa" Type="Int32" />
           <Property Name="direccion_Programa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="id_Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_w_Contrato">
+          <Key>
+            <PropertyRef Name="id_Contrato" />
+          </Key>
+          <Property Name="id_Contrato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Cliente" Type="Int32" />
+          <Property Name="numero_Contrato" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="observaciones_Contrato" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="fechaInicio" Type="DateTime" Precision="3" />
+          <Property Name="fechaFinal" Type="DateTime" Precision="3" />
+          <Property Name="id_Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_w_Marca_Vehiculo">
+          <Key>
+            <PropertyRef Name="id_Marca" />
+          </Key>
+          <Property Name="id_Marca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_Marca" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="imagen_Marca" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="id_Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="usuario_creacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
@@ -1515,23 +1515,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbl_w_Contrato">
-            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_w_Contrato">
-              <MappingFragment StoreEntitySet="tbl_w_Contrato">
-                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
-                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
-                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
-                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
-                <ScalarProperty Name="id_Estado" ColumnName="id_Estado" />
-                <ScalarProperty Name="fechaFinal" ColumnName="fechaFinal" />
-                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
-                <ScalarProperty Name="observaciones_Contrato" ColumnName="observaciones_Contrato" />
-                <ScalarProperty Name="numero_Contrato" ColumnName="numero_Contrato" />
-                <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
-                <ScalarProperty Name="id_Contrato" ColumnName="id_Contrato" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tbl_w_Carroceria_Vehiculo">
             <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_w_Carroceria_Vehiculo">
               <MappingFragment StoreEntitySet="tbl_w_Carroceria_Vehiculo">
@@ -1557,20 +1540,6 @@
                 <ScalarProperty Name="nombre_Categoria" ColumnName="nombre_Categoria" />
                 <ScalarProperty Name="id_TipoVehiculo" ColumnName="id_TipoVehiculo" />
                 <ScalarProperty Name="id_Categoria" ColumnName="id_Categoria" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbl_w_Marca_Vehiculo">
-            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_w_Marca_Vehiculo">
-              <MappingFragment StoreEntitySet="tbl_w_Marca_Vehiculo">
-                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
-                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
-                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
-                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="imagen_Marca" ColumnName="imagen_Marca" />
-                <ScalarProperty Name="nombre_Marca" ColumnName="nombre_Marca" />
-                <ScalarProperty Name="id_Marca" ColumnName="id_Marca" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1633,6 +1602,37 @@
                 <ScalarProperty Name="fechaProgramacion" ColumnName="fechaProgramacion" />
                 <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
                 <ScalarProperty Name="id_OrdenProgramacion" ColumnName="id_OrdenProgramacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_w_Contrato">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_w_Contrato">
+              <MappingFragment StoreEntitySet="tbl_w_Contrato">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="id_Estado" ColumnName="id_Estado" />
+                <ScalarProperty Name="fechaFinal" ColumnName="fechaFinal" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="observaciones_Contrato" ColumnName="observaciones_Contrato" />
+                <ScalarProperty Name="numero_Contrato" ColumnName="numero_Contrato" />
+                <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
+                <ScalarProperty Name="id_Contrato" ColumnName="id_Contrato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_w_Marca_Vehiculo">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_w_Marca_Vehiculo">
+              <MappingFragment StoreEntitySet="tbl_w_Marca_Vehiculo">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="id_Estado" ColumnName="id_Estado" />
+                <ScalarProperty Name="imagen_Marca" ColumnName="imagen_Marca" />
+                <ScalarProperty Name="nombre_Marca" ColumnName="nombre_Marca" />
+                <ScalarProperty Name="id_Marca" ColumnName="id_Marca" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

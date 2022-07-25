@@ -80,8 +80,8 @@ export const getCargarCombos = ()=>{
             icon: 'info', allowOutsideClick: false, allowEscapeKey: false, text: 'Espere por favor'
           })
           Swal.showLoading();      
-          Promise.all([vehiculoServices().tipoVehiculo(), vehiculoServices().marcaVehiculo(), vehiculoServices().dniConductores() ])
-            .then(([ _tipoVehiculo, _marcaVehiculo, _conductores ])  => {
+          Promise.all([vehiculoServices().tipoVehiculo(), vehiculoServices().marcaVehiculo(), vehiculoServices().dniConductores(), vehiculoServices().carroceriaVehiculo(0) ])
+            .then(([ _tipoVehiculo, _marcaVehiculo, _conductores, _carroceria ])  => {
             Swal.close();    
             if (_tipoVehiculo.ok) {
               dispatch( listTiposVehiculos(_tipoVehiculo.data))
@@ -99,6 +99,11 @@ export const getCargarCombos = ()=>{
             }else{
               alert(JSON.stringify(_conductores.data));
             } 
+            if (_carroceria.ok) {
+              dispatch( listCarroceriasVehiculos(_carroceria.data))
+            }else{
+              alert(JSON.stringify(_carroceria.data));
+            }
 
           }).catch(reason => {
             Swal.close();
@@ -150,8 +155,8 @@ export const getCargarCombos = ()=>{
           dispatch(flagEdicion(false));
           dispatch(objectoEdicion(null));
           ///---combo dependientes
-          dispatch(listCategoriasVehiculos([])); 
-          dispatch(listCarroceriasVehiculos([])); 
+          // dispatch(listCategoriasVehiculos([])); 
+          // dispatch(listCarroceriasVehiculos([])); 
       } catch (error) {
         Swal.close();
         Swal_alert('error', JSON.stringify(error));
@@ -182,10 +187,10 @@ export const getCargarCombos = ()=>{
       return false;
     }
 
-    if (id_Categoria === 0 || id_Categoria === '0') {
-      Swal_alert('error','Por favor seleccione la Categoria');
-      return false;
-    } 
+    // if (id_Categoria === 0 || id_Categoria === '0') {
+    //   Swal_alert('error','Por favor seleccione la Categoria');
+    //   return false;
+    // } 
     if (id_Carroceria === 0 || id_Carroceria === '0') {
       Swal_alert('error','Por favor seleccione la Carroceria');
       return false;
@@ -234,33 +239,38 @@ export const getCargarCombos = ()=>{
       try {
         
           dispatch(objectoEdicion(null));
-          ///---combo dependientes
-          dispatch(listCategoriasVehiculos([])); 
-          dispatch(listCarroceriasVehiculos([]));         
+          dispatch(flagEdicion(true)); 
+          dispatch(modalTitle('EDITAR VEHICULO'));                    
+          dispatch(objectoEdicion(objEdicion)); 
+          dispatch(modalOpen());
 
-          Swal.fire({
-            icon: 'info', allowOutsideClick: false, allowEscapeKey: false, text: 'Espere por favor'
-          })
-          Swal.showLoading();      
-          Promise.all([vehiculoServices().categoriaVehiculo(objEdicion.id_TipoVehiculo), vehiculoServices().carroceriaVehiculo(objEdicion.id_Categoria)  ])
-            .then(([ res, resCarroceria ])  => {
-            Swal.close();    
-            if (res.ok) {    
-              //---cargando Combos contrato---        
-              dispatch(listCategoriasVehiculos(res.data));         
-              dispatch(listCarroceriasVehiculos(resCarroceria.data));   
+          // ///---combo dependientes
+          // dispatch(listCategoriasVehiculos([])); 
+          // dispatch(listCarroceriasVehiculos([]));         
 
-              dispatch(flagEdicion(true)); 
-              dispatch(modalTitle('EDITAR VEHICULO'));                    
-              dispatch(objectoEdicion(objEdicion)); 
-              dispatch(modalOpen());
-            }else{
-              alert(JSON.stringify(res.data));
-            }          
-          }).catch(reason => {
-            Swal.close();
-            alert(JSON.stringify(reason));
-          });  
+          // Swal.fire({
+          //   icon: 'info', allowOutsideClick: false, allowEscapeKey: false, text: 'Espere por favor'
+          // })
+          // Swal.showLoading();      
+          // Promise.all([vehiculoServices().categoriaVehiculo(objEdicion.id_TipoVehiculo), vehiculoServices().carroceriaVehiculo(objEdicion.id_Categoria)  ])
+          //   .then(([ res, resCarroceria ])  => {
+          //   Swal.close();    
+          //   if (res.ok) {    
+          //     // ---cargando Combos contrato---        
+          //     dispatch(listCategoriasVehiculos(res.data));         
+          //     dispatch(listCarroceriasVehiculos(resCarroceria.data));   
+
+          //     dispatch(flagEdicion(true)); 
+          //     dispatch(modalTitle('EDITAR VEHICULO'));                    
+          //     dispatch(objectoEdicion(objEdicion)); 
+          //     dispatch(modalOpen());
+          //   }else{
+          //     alert(JSON.stringify(res.data));
+          //   }          
+          // }).catch(reason => {
+          //   Swal.close();
+          //   alert(JSON.stringify(reason));
+          // });            
   
       } catch (error) {
         Swal.close();
@@ -324,8 +334,8 @@ export const getCargarCombos = ()=>{
       try {
 
          if (String(idTipoVehiculos) === '0') {
-            dispatch(listCategoriasVehiculos([])); 
-            dispatch(listCarroceriasVehiculos([])); 
+            // dispatch(listCategoriasVehiculos([])); 
+            // dispatch(listCarroceriasVehiculos([])); 
          }else{
             Swal.fire({
               icon: 'info', allowOutsideClick: false, allowEscapeKey: false, text: 'Obteniendo las Categorias de los Vehiculos, Espere por favor'

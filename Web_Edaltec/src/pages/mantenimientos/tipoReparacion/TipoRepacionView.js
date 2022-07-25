@@ -13,7 +13,6 @@ export const TipoRepacionView = () => {
     return (
         <> 
           <TipoRepacionFiltros  />            
-           <br/> 
            <TipoRepacionGrilla  />
             {
                 showModal &&   

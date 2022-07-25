@@ -203,6 +203,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Mantenimiento\tblUsuariosController.cs" />
     <Compile Include="Controllers\Mantenimiento\tblw_ClienteController.cs" />
+    <Compile Include="Controllers\Mantenimiento\tblw_Marca_VehiculoController.cs" />
     <Compile Include="Controllers\Mantenimiento\tbl_w_Cliente_TipoReparacionController.cs" />
     <Compile Include="Controllers\Mantenimiento\tbl_w_ContratoController.cs" />
     <Compile Include="Controllers\Mantenimiento\tbl_w_ServicioController.cs" />
@@ -213,6 +214,7 @@
     <Compile Include="Controllers\Proceso\Registro_OTController.cs" />
     <Compile Include="Controllers\Proceso\tblw_OT_DetController.cs" />
     <Compile Include="Controllers\Proceso\tbl_w_OrdenTrabajo_ProgramacionController.cs" />
+    <Compile Include="Controllers\Reporte\ReporteAsistenciaController.cs" />
     <Compile Include="Controllers\upload\UploadsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -294,7 +296,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\Reporte\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

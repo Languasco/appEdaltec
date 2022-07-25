@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 import { Swal_alert } from "../../../helper/alertas";
 import { flagEdicion } from "../flagEdicionSlice";
-import { modalOpen, modalTitle } from "../modalSlice";
+import { modalClose, modalOpen, modalTitle } from "../modalSlice";
 import { objectoEdicion } from "../objectoEdicionSlice";
 import { refrescarDatoPrincipal } from "../refrescarDataSlice";
 
@@ -9,14 +9,15 @@ import { vehiculoServices } from "../../../services/mantenimiento/vehiculoServic
 import { programacionOTServices } from "../../../services/procesos/programacionOTServices";
 import { registroOTServices } from "../../../services/procesos/registroOTServices";
 import { listDniConductores } from "../mantenimientos/vehiculoSlice";
-import { getDistrito, listClientes, listTipoTrabajos } from "./registroOTSlice";
+import { listClientes } from "./registroOTSlice";
 import { formatoFecha } from "../../../helper/funcionesglobales";
 
 const { createSlice } = require("@reduxjs/toolkit");
 
 const initialState = {
     programacionesOtCab : [],
-    programacionesOt_cliente : [],
+    tipoProceso : 1,
+    idProgramacionMasivo : [],
  }
 
  
@@ -30,12 +31,6 @@ const programacionOTSlice = createSlice({
                 programacionesOtCab : action.payload
             } 
         },
-        listProgramacionesOT_cliente(state, action){
-            return {
-                ...state,
-                programacionesOt_cliente : action.payload
-            } 
-        },
         refrescandoEstadoProgramacionOT(state, action){
             return {
                 ...state,
@@ -44,7 +39,18 @@ const programacionOTSlice = createSlice({
                 })  
             }  
         },
- 
+        tipoProcesoSeleccionado(state, action){
+          return {
+              ...state,
+              tipoProceso : action.payload
+          } 
+       },
+       set_idProgramacionMasivos(state, action){
+        return {
+            ...state,
+            idProgramacionMasivo : action.payload
+        } 
+     }
     }
 })
 
@@ -55,7 +61,7 @@ export const getCargarCombos = ()=>{
             icon: 'info', allowOutsideClick: false, allowEscapeKey: false, text: 'Espere por favor'
           })
           Swal.showLoading();      
-          Promise.all([ registroOTServices().getClientes(), vehiculoServices().dniConductores(), registroOTServices().getTiposTrabajo() ,  registroOTServices().getDistrito() ])
+          Promise.all([ registroOTServices().getClientes(), vehiculoServices().dniConductores() ])
             .then(([_clientes, _conductores,_tiposTrabajos, _distritos ])  => {
             Swal.close();    
 
@@ -65,20 +71,11 @@ export const getCargarCombos = ()=>{
               alert(JSON.stringify(_clientes.data));
             } 
             if (_conductores.ok) {
-              dispatch( listDniConductores(_conductores.data))
+              let coordinadores = [ {Ges_Empl_Identidad:0 , Ges_Empl_Dni : '000000' , Ges_Empl_Apellidos:'[--SELECCIONE--]'} ,  ..._conductores.data];   
+              dispatch( listDniConductores(coordinadores))
             }else{
               alert(JSON.stringify(_conductores.data));
-            } 
-            if (_tiposTrabajos.ok) {
-              dispatch( listTipoTrabajos(_tiposTrabajos.data))
-            }else{
-              alert(JSON.stringify(_tiposTrabajos.data));
-            }
-            if (_distritos.ok) {
-              dispatch( getDistrito(_distritos.data))
-            }else{
-              alert(JSON.stringify(_distritos.data));
-            }
+            }  
 
           }).catch(reason => {
             Swal.close();
@@ -91,9 +88,11 @@ export const getCargarCombos = ()=>{
       } 
     }
   } 
-  export const mostrarInformacion =(  cliente,fechaInicial, fechaFinal,estado , estaSegundoPlano )=>{
+  export const mostrarInformacion =(  cliente, fechaInicial, fechaFinal,TipoProceso , estaSegundoPlano )=>{
     return  async(dispatch)=>{ 
       try {
+ 
+          dispatch(listProgramacionesOTcab([]));
 
           if(estaSegundoPlano === false){
               Swal.fire({
@@ -104,15 +103,16 @@ export const getCargarCombos = ()=>{
           const fechaIni =  formatoFecha(fechaInicial);
           const fechaFin =  formatoFecha(fechaFinal);
 
-          const res = await programacionOTServices().getMostrarInformacion(  cliente,fechaIni, fechaFin,estado  );
+          const res = await programacionOTServices().getMostrarInformacion(  cliente,fechaIni, fechaFin,TipoProceso  );
           if(estaSegundoPlano === false) Swal.close(); 
 
           if (res.ok) {   
             const listProceso = res.data.map((row, index)=>{
-              return { ...row, id : index  }
+              return { ...row, id : index + 1  }
             })
             dispatch(listProgramacionesOTcab(listProceso));
             dispatch(refrescarDatoPrincipal(false));
+            dispatch(tipoProcesoSeleccionado( Number(TipoProceso) ));
           }else{
             alert(JSON.stringify(res.data));
           } 
@@ -124,14 +124,14 @@ export const getCargarCombos = ()=>{
     }
   }
 
-  export const nuevo =()=>{
+  export const nuevo =(idProgramacionMasivo)=>{
     return  async(dispatch)=>{ 
       try { 
           dispatch(modalOpen());
-          dispatch(modalTitle('NUEVO PROGRAMACION DE TRABAJOS'));
+          dispatch(modalTitle('PROGRAMACION DE TRABAJOS'));
           dispatch(flagEdicion(false));
           dispatch(objectoEdicion(null));
-          dispatch(listProgramacionesOT_cliente([]));
+          dispatch(set_idProgramacionMasivos(idProgramacionMasivo));
       } catch (error) {
         Swal.close();
         Swal_alert('error', JSON.stringify(error));
@@ -139,7 +139,7 @@ export const getCargarCombos = ()=>{
     }
   } 
 
-  export const validaciones = async ({ id_Cliente, fechaProgramacion, ges_Empl_DNI_JefeCuadrilla, id_Vehiculo, id_TipoTrabajo, numero_Orden_Programa, id_Distrito_Programa }, esEdicion)=>{    
+  export const validaciones = async ({ id_Cliente, fechaProgramacion, ges_Empl_DNI_JefeCuadrilla, id_Vehiculo }, esEdicion)=>{    
 
     if (id_Cliente === 0 || id_Cliente === '0') {
         Swal_alert('error','Por favor seleccione el Cliente');
@@ -157,18 +157,7 @@ export const getCargarCombos = ()=>{
       Swal_alert('error','Por favor ingrese la placa y presione la tecla Enter..');
       return false;
     } 
-    if (id_TipoTrabajo === 0 || id_TipoTrabajo === '0') {
-      Swal_alert('error','Por favor seleccione el Tipo de Trabajo');
-      return false;
-    }  
-    if (numero_Orden_Programa === '' || numero_Orden_Programa === null) {
-      Swal_alert('error','Por favor ingrese el Numero de Orden');
-      return false;
-    } 
-    if (id_Distrito_Programa === 0 || id_Distrito_Programa === '0') {
-      Swal_alert('error','Por favor seleccione el Distrito');
-      return false;
-    }     
+ 
 
     if ( esEdicion === false ) {
       const fecha=  formatoFecha(fechaProgramacion);
@@ -189,29 +178,24 @@ export const getCargarCombos = ()=>{
     return true;
   }
 
-  export const save =(objMantenimiento)=>{
+  export const save =(objMantenimiento, listProgramacionMasivo)=>{
     return  async(dispatch)=>{ 
       try {
           Swal.fire({
             icon: 'info', allowOutsideClick: false, allowEscapeKey: false, text: 'Espere por favor'
           })
           Swal.showLoading();
-          const {data : res}  = await programacionOTServices().save(objMantenimiento);
+
+          const fechaPrograma =  formatoFecha(objMantenimiento.fechaProgramacion);
+          const res = await programacionOTServices().save_new({...objMantenimiento, fechaProgramacion : fechaPrograma  }, listProgramacionMasivo.join());
           Swal.close();
           if (res.ok) {
  
             Swal_alert('success','Se registro correctamente..');
-            dispatch(refrescarDatoPrincipal(true)); 
-            dispatch(modalTitle('NUEVO PROGRAMACION DE TRABAJOS'));
-            dispatch(flagEdicion(true));                    
-            dispatch(objectoEdicion({...objMantenimiento, id_Distrito_Programa : '0', direccion_Programa : ''}));    
-
-            //----refrescando informacion Agrupada-------
-            dispatch(programacionOT_cliente(objMantenimiento.id_Cliente))
-
-            setTimeout(() => {
-              dispatch(flagEdicion(false));  
-            }, 1000);     
+            setTimeout(()=>{ //  
+              dispatch(refrescarDatoPrincipal(true));
+              dispatch(modalClose());
+           },200);      
 
           }else{
             Swal_alert('error', JSON.stringify(res.data));
@@ -221,22 +205,7 @@ export const getCargarCombos = ()=>{
         Swal_alert('error', JSON.stringify(error));
       } 
     }
-  }
-
-  const programacionOT_cliente =(id_Cliente)=>{
-    return  async(dispatch)=>{       
-      Promise.all([programacionOTServices().listadoProgramacionOT_Cliente(id_Cliente) ])
-      .then(([ res ])  => {           
-      if (res.ok) {    
-          dispatch(listProgramacionesOT_cliente(res.data));                
-        }else{
-          alert(JSON.stringify(res.data));
-        }          
-      }).catch(reason => {
-        alert(JSON.stringify(reason));
-      });
-    }
-  }
+  } 
  
   export const editar =(objEdicion)=>{
     return  async(dispatch)=>{ 
@@ -248,14 +217,17 @@ export const getCargarCombos = ()=>{
             icon: 'info', allowOutsideClick: false, allowEscapeKey: false, text: 'Espere por favor'
           })
           Swal.showLoading();      
-          Promise.all([programacionOTServices().listadoProgramacionOT_Cliente(objEdicion.id_Cliente) ])
+          Promise.all([programacionOTServices().programacionTrabajoEdicion(objEdicion.id_OrdenTrabajo) ])
             .then(([ res ])  => {
-            Swal.close();             
+            Swal.close();           
+            
             if (res.ok) {    
-              
-                dispatch(modalTitle('EDITAR PROGRAMACION DE TRABAJO'));  
-                dispatch(listProgramacionesOT_cliente(res.data));                
+                          
+                dispatch(modalTitle('EDITAR PROGRAMACION '));            
+                dispatch(objectoEdicion(res.data[0]));
+                dispatch(flagEdicion(true));
                 dispatch(modalOpen());
+                dispatch(set_idProgramacionMasivos([objEdicion.id_OrdenTrabajo]));
               
             }else{
               alert(JSON.stringify(res.data));
@@ -270,43 +242,7 @@ export const getCargarCombos = ()=>{
         Swal_alert('error', JSON.stringify(error));
       } 
     }
-  }   
-  
-  export const update =(objMantenimiento)=>{
-    return  async(dispatch)=>{ 
-      try {
-
-          Swal.fire({
-            icon: 'info', allowOutsideClick: false, allowEscapeKey: false, text: 'Espere por favor'
-          })
-          Swal.showLoading();
-          const {data : res}  = await programacionOTServices().update( objMantenimiento.id_OrdenProgramacion, objMantenimiento);
-          Swal.close();
-          if (res.ok) {     
-
-            Swal_alert('success','Se Actualizo correctamente..');
-            dispatch(refrescarDatoPrincipal(true)); 
-            dispatch(modalTitle('NUEVO PROGRAMACION DE TRABAJOS'));
-            dispatch(flagEdicion(true));                    
-            dispatch(objectoEdicion({...objMantenimiento, id_Distrito_Programa : '0', direccion_Programa : ''}));    
-            
-            //----refrescando informacion Agrupada-------
-            dispatch(programacionOT_cliente(objMantenimiento.id_Cliente))
-
-            setTimeout(() => {
-              dispatch(flagEdicion(false));  
-            }, 1000);
-
-          }else{
-            alert(JSON.stringify(res.data));
- 
-          } 
-      } catch (error) {
-        Swal.close();
-        alert(JSON.stringify(error));
-      } 
-    }
-  }
+  }    
 
   export const anular =( id_OrdenProgramacion, id_usuario )=>{
     return  async(dispatch)=>{ 
@@ -337,8 +273,6 @@ export const getCargarCombos = ()=>{
     return res;
   }
 
-
-
-export const { listProgramacionesOTcab,listProgramacionesOT_cliente, refrescandoEstadoProgramacionOT } = programacionOTSlice.actions;
+export const { listProgramacionesOTcab,refrescandoEstadoProgramacionOT, tipoProcesoSeleccionado , set_idProgramacionMasivos} = programacionOTSlice.actions;
 
 export default programacionOTSlice.reducer;

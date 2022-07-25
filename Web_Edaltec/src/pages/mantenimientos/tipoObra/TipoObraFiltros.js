@@ -7,6 +7,9 @@ import { useForm } from '../../../hooks/useForm';
 
 import {Card, CardContent} from '@material-ui/core';
 import { mostrarInformacion, nuevo } from '../../../redux/slice/mantenimientos/tipoObraSlice';
+
+import RefreshIcon from '@material-ui/icons/Refresh';
+import AddIcon from '@material-ui/icons/Add';
  
 
 const useStyles = makeStyles((theme) => ({
@@ -53,11 +56,11 @@ export const TipoObraFiltros = () => {
   return (    
     <Card> 
         <CardContent>
-            <div className='title-form' >
-                <h4> Mantenimiento de Tipo de Obra </h4>
+            <div>
+                <p className='titleFormAlternative'>  MANTENIMIENTO DE TIPO DE OBRA </p>
             </div>
-            <hr/>
-            <Row  className='mt-4'> 
+ 
+            <Row  className='mt-1 mb-0'> 
                 <Col sm={6}  md={6}  >
                         <FormControl variant="outlined" className={classes.formControl} >
                             <InputLabel id="Pub_Esta_Codigo"> Estado </InputLabel>
@@ -74,8 +77,8 @@ export const TipoObraFiltros = () => {
                         </FormControl>
                 </Col>
                 <Col sm={6}  md={6}  className="text-center"   >
-                    <Button variant="contained" onClick= { handleClickMostrar } >Mostrar</Button>
-                    <Button  variant="contained" color="primary"   onClick={ handleClick_nuevo }> Nuevo </Button>  
+                    <Button  startIcon={<RefreshIcon/>}   variant="contained" onClick= { handleClickMostrar } >Mostrar</Button>
+                    <Button  startIcon={<AddIcon/>}  variant="contained" color="primary"   onClick={ handleClick_nuevo }> Nuevo </Button>   
                 </Col>
             </Row>       
         </CardContent> 

@@ -19,7 +19,6 @@ export const PrecioClienteView = () => {
     return (
         <> 
           <PrecioClienteFiltros/>            
-           <br/> 
            <PrecioClienteGrilla />
             {
                 showModal &&   

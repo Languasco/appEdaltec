@@ -17,15 +17,15 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const formParamsTab1Initial = {
     id_Empresa : '0',
-    apellidos_Personal: 'languasco',
+    Concatenado: '',
     fechaElectrica : new Date(),
 
     id_OrdenTrabajo : '0',
     id_Servicio : '0',
-    fechaCorreo_OrdenTrabajo : new Date(),
+    fechaCorreo_OrdenTrabajo : null,
     extension : '',
-    fechaElectrica_OrdenTrabajo : new Date(),
-    fechaAsignada_OrdenTrabajo : new Date(),
+    fechaElectrica_OrdenTrabajo : null,
+    fechaAsignada_OrdenTrabajo : null,
 
     id_TipoTrabajo : '0',
     numero_OrdenTrabajo : '',
@@ -36,16 +36,16 @@ const formParamsTab1Initial = {
 
     cliente_OrdenTrabajo : '0',
     cxr_OrdenTrabajo : '',
-    fechaProgramada_OrdenTrabajo : new Date(),
+    fechaProgramada_OrdenTrabajo : null,
     id_Supervisor : '0',
     id_Supervisor2 : '0',
-    fechaAsigndaCampo_OrdenTrabajo : new Date(),
+    fechaAsigndaCampo_OrdenTrabajo : null,
 
     supervisorContratista : '',
     cantDesm : '',
-    fechaElimDes_OrdenTrabajo : new Date(),
+    fechaElimDes_OrdenTrabajo : null,
 
-    fechaEjecutado_OrdenTrabajo : new Date(),
+    fechaEjecutado_OrdenTrabajo : null,
     
     personal_OrdenTrabajo : '',
     cemento_OrdenTrabajo : '',
@@ -58,7 +58,7 @@ const formParamsTab1Initial = {
     salida_OrdenTrabajo : '',
     llegada_OrdenTrabajo : '',
     km_OrdenTrabajo : '',
-    id_Estado : '0',
+    id_Estado : '016',
     usuario_creacion : '00',    
 }
 
@@ -81,6 +81,7 @@ const initialState = {
     id_OrdenTrabajo_Global : '0',
     clientes : [],
     tipoTrabajos : [],
+    tipoTrabajosModal : [],
     inspeccionados : [],
     areas : [],
     distritos : [],
@@ -229,6 +230,13 @@ const registroOTSlice = createSlice({
                 tipoTrabajos : action.payload
             } 
         },
+        listTipoTrabajosModal(state, action){ 
+          return {
+              ...state,
+              tipoTrabajosModal : action.payload
+          } 
+        },
+
         listInspeccionados(state, action){ 
             return {
                 ...state,
@@ -286,9 +294,6 @@ const registroOTSlice = createSlice({
     }
 })
 
-
-
-
 export const getCargarCombos = ()=>{
     return  async(dispatch)=>{ 
       try { 
@@ -307,12 +312,19 @@ export const getCargarCombos = ()=>{
               alert(JSON.stringify(_clientes.data));
             } 
             if (_tiposTrabajos.ok) {
-              dispatch( listTipoTrabajos (_tiposTrabajos.data))
+              let tipostrabajoss = [ {id:0 , descripcion:'[-- TODOS --]'} ,  ..._tiposTrabajos.data];   
+              let tipostrabajosss = [ {id:0 , descripcion:'[ SELEC ]'} ,  ..._tiposTrabajos.data];  
+
+              dispatch( listTipoTrabajos (tipostrabajoss))
+              dispatch( listTipoTrabajosModal (tipostrabajosss))
+
             }else{
               alert(JSON.stringify(_tiposTrabajos.data));
             }
             if (_inspeccionados.ok) {
-              dispatch( listInspeccionados(_inspeccionados.data))
+         
+              let inspeccionadoss = [ {id: '0' , descripcion:'[-- TODOS --]'} ,  ..._inspeccionados.data];   
+              dispatch( listInspeccionados(inspeccionadoss))
             }else{
               alert(JSON.stringify(_inspeccionados.data));
             }
@@ -324,19 +336,22 @@ export const getCargarCombos = ()=>{
             }
   
             if (_distritos.ok) {
-              dispatch( getDistrito(_distritos.data))
+              let distritoss = [ {id:0 , descripcion:'[--SELECCIONE--]'} ,  ..._distritos.data];   
+              dispatch( getDistrito(distritoss))
             }else{
               alert(JSON.stringify(_distritos.data));
             }
   
             if (_supervisores.ok) {
-              dispatch( getSupervisores(_supervisores.data))
+              let supervidores = [ {id:0 , descripcion:'[--SELECCIONE--]'} ,  ..._supervisores.data];   
+              dispatch( getSupervisores(supervidores))
             }else{
               alert(JSON.stringify(_supervisores.data));
             }
   
             if (_tipoReparaciones.ok) {
-              dispatch( getTiposReparacion(_tipoReparaciones.data))
+              let tiposReparaciones = [{id:0 , descripcion:'[--SELECCIONE--]' },  ..._tipoReparaciones.data];     
+              dispatch( getTiposReparacion(tiposReparaciones))
             }else{
               alert(JSON.stringify(_tipoReparaciones.data));
             }
@@ -387,28 +402,25 @@ export const getCargarCombos = ()=>{
   
   export const validacionesCargaInicialTab1 = (objMantenimiento, tiposReparacionesMultiple)=>{
   
-    const {  id_Servicio, fechaCorreo_OrdenTrabajo,  fechaElectrica_OrdenTrabajo, fechaAsignada_OrdenTrabajo, id_TipoTrabajo, 
-      numero_OrdenTrabajo, nroCliente_OrdenTrabajo, id_Distrito, cliente_OrdenTrabajo,  fechaProgramada_OrdenTrabajo, 
-      id_Supervisor, id_Supervisor2, fechaAsigndaCampo_OrdenTrabajo,  fechaElimDes_OrdenTrabajo, fechaEjecutado_OrdenTrabajo,  id_Estado     
-    } = objMantenimiento;
+    const {  id_Servicio,  id_TipoTrabajo,  numero_OrdenTrabajo, nroCliente_OrdenTrabajo, id_Distrito, cliente_OrdenTrabajo, id_Supervisor, id_Supervisor2, id_Estado  } = objMantenimiento;
    
     if (id_Servicio === '0' || id_Servicio === 0   ){
       Swal_alert('error','Por favor seleccione un Servicio.');
       return false;
     }
   
-    if (fechaCorreo_OrdenTrabajo === '' || fechaCorreo_OrdenTrabajo === null ){
-      Swal_alert('error','Por favor seleccione la Fecha de Correo.');
-      return false;
-    }
-    if (fechaElectrica_OrdenTrabajo === '' || fechaElectrica_OrdenTrabajo === null ){
-      Swal_alert('error','Por favor seleccione la Fecha Electrica.');
-      return false;
-    }
-    if (fechaAsignada_OrdenTrabajo === '' || fechaAsignada_OrdenTrabajo === null ){
-      Swal_alert('error','Por favor seleccione la Fecha Asignada.');
-      return false;
-    }
+    // if (fechaCorreo_OrdenTrabajo === '' || fechaCorreo_OrdenTrabajo === null ){
+    //   Swal_alert('error','Por favor seleccione la Fecha de Correo.');
+    //   return false;
+    // }
+    // if (fechaElectrica_OrdenTrabajo === '' || fechaElectrica_OrdenTrabajo === null ){
+    //   Swal_alert('error','Por favor seleccione la Fecha Electrica.');
+    //   return false;
+    // }
+    // if (fechaAsignada_OrdenTrabajo === '' || fechaAsignada_OrdenTrabajo === null ){
+    //   Swal_alert('error','Por favor seleccione la Fecha Asignada.');
+    //   return false;
+    // }
     if (id_TipoTrabajo === '0' || id_TipoTrabajo === 0 ){
       Swal_alert('error','Por favor seleccione el Tipo de Trabajo.');
       return false;
@@ -429,10 +441,10 @@ export const getCargarCombos = ()=>{
       Swal_alert('error','Por favor seleccione Cliente.');
       return false;
     }
-    if (fechaProgramada_OrdenTrabajo === '' || fechaProgramada_OrdenTrabajo === null ){
-      Swal_alert('error','Por favor ingrese la fecha Programada.');
-      return false;
-    }
+    // if (fechaProgramada_OrdenTrabajo === '' || fechaProgramada_OrdenTrabajo === null ){
+    //   Swal_alert('error','Por favor ingrese la fecha Programada.');
+    //   return false;
+    // }
     if (id_Supervisor === '0' || id_Supervisor === 0   ){
       Swal_alert('error','Por favor seleccione un Supervisor.');
       return false;
@@ -441,27 +453,25 @@ export const getCargarCombos = ()=>{
       Swal_alert('error','Por favor seleccione un Supervisor.');
       return false;
     }
-    if (fechaAsigndaCampo_OrdenTrabajo === '' || fechaAsigndaCampo_OrdenTrabajo === null ){
-      Swal_alert('error','Por favor ingrese la fecha Programada.');
-      return false;
-    }
+    // if (fechaAsigndaCampo_OrdenTrabajo === '' || fechaAsigndaCampo_OrdenTrabajo === null ){
+    //   Swal_alert('error','Por favor ingrese la fecha Programada.');
+    //   return false;
+    // }
  
-    if (fechaElimDes_OrdenTrabajo === '' || fechaElimDes_OrdenTrabajo === null ){
-      Swal_alert('error','Por favor ingrese la fecha Elimin.');
-      return false;
-    }
+    // if (fechaElimDes_OrdenTrabajo === '' || fechaElimDes_OrdenTrabajo === null ){
+    //   Swal_alert('error','Por favor ingrese la fecha Elimin.');
+    //   return false;
+    // }
   
     if(tiposReparacionesMultiple.length ===0 ){
       Swal_alert('error','Por favor seleccione al Menos un tipo de Reparacion.');
       return false;
-    }
+    }  
   
-  
-  
-    if (fechaEjecutado_OrdenTrabajo === '' || fechaEjecutado_OrdenTrabajo === null ){
-      Swal_alert('error','Por favor ingrese la fecha Ejecutado.');
-      return false;
-    }
+    // if (fechaEjecutado_OrdenTrabajo === '' || fechaEjecutado_OrdenTrabajo === null ){
+    //   Swal_alert('error','Por favor ingrese la fecha Ejecutado.');
+    //   return false;
+    // }
     if (id_Estado === '0' || id_Estado === 0   ){
       Swal_alert('error','Por favor seleccione un Estado.');
       return false;
@@ -538,7 +548,9 @@ export const getCargarCombos = ()=>{
             icon: 'info', allowOutsideClick: false, allowEscapeKey: false, text: 'Espere por favor'
           })
           Swal.showLoading();      
-          Promise.all([registroOTServices().get_editCargaInicial(idOt), registroOTServices().get_mostrarArchivosCargadosEvidencias(idOt), registroOTServices().get_mostrarMetrados(idOt) , registroOTServices().get_mostrarTiposReparacionMontos(idOt), registroOTServices().get_mostrarFotosTab4(idOt) , registroOTServices().get_mostrarOcurrencias(idOt)  ])
+          Promise.all([registroOTServices().get_editCargaInicial(idOt), registroOTServices().get_mostrarArchivosCargadosEvidencias(idOt), 
+                      registroOTServices().get_mostrarMetrados(idOt) , registroOTServices().get_mostrarTiposReparacionMontos(idOt), 
+                      registroOTServices().get_mostrarFotosTab4(idOt) , registroOTServices().get_mostrarOcurrencias(idOt)  ])
             .then(([ _cargaInicial, _archivosEvidencias, _metrados, _tiposReparacionMontos, _fotosTab4, _ocurrencias ])  => {
             Swal.close();    
    
@@ -1023,6 +1035,12 @@ export const getCargarCombos = ()=>{
         // ----- centrando un texto jspdf
         doc.setTextColor("#000000"); //// ---txto normal negrita
         let pageWidth = doc.internal.pageSize.getWidth();
+
+        doc.line(5, 3, 200,  3 ) // horizontal line
+        doc.line(5, 3, 5, 95) // vertical line
+        doc.line(68, 3, 68, 95) // vertical line
+        doc.line(138, 3, 138, 95) // vertical line
+        doc.line(200, 3, 200, 95) // vertical line
   
         doc.addImage(logoEdaltec, 'JPEG', 10, 4, 50, 20);
         if (dt_reportePdf[0].logoCliente === 1) {
@@ -1168,7 +1186,7 @@ export const getCargarCombos = ()=>{
             }  
         }      
         //doc.output('dataurlnewwindow');
-         doc.save("ReporteOT_PDF_" + codigoAle + '.pdf');
+        doc.save("ReporteOT_PDF_" + codigoAle + '.pdf');
   
     }else{
       Swal_alert('error','No hay informacion para mostrar en el reporte..');
@@ -1212,6 +1230,32 @@ export const getCargarCombos = ()=>{
         // ----- centrando un texto jspdf
         doc.setTextColor("#000000"); //// ---txto normal negrita
         let pageWidth = doc.internal.pageSize.getWidth();
+
+        doc.line(5, 3, 200,  3 ) // horizontal line
+        doc.line(5, 3, 5, 68) // vertical line 
+        doc.line(46, 25 , 46, 68) // vertical line
+
+        //----- segunda fila -------
+        doc.line(86, 25 , 86, 39) // vertical line
+        doc.line(118 , 25 , 118, 39) // vertical line
+
+
+            //----- tercera fila -------
+            doc.line(89, 39 , 89, 54) // vertical line
+            doc.line( 109 , 39 , 109, 54) // vertical line
+
+        
+        //----- cuarta fila -------
+        doc.line(86, 54 , 86, 68) // vertical line
+        doc.line(118, 54 , 118, 68) // vertical line
+
+
+        doc.line(68, 3, 68, 25) // vertical line
+        doc.line(138, 3, 138, 25) // vertical line
+
+        doc.line(166, 25 , 166, 68) // vertical line
+        doc.line(200, 3, 200, 68) // vertical line
+
   
         doc.addImage(logoEdaltec, 'JPEG', 10, 4, 50, 20);
         if (dt_reportePdf[0].logoCliente === 1) {
@@ -1234,14 +1278,14 @@ export const getCargarCombos = ()=>{
         
         altura = altura + 6;
         doc.setFontSize(8);
-        doc.text( String('ORDEN TRABAJO') , 5, altura );  
+        doc.text( String('ORDEN TRABAJO') , 5.5, altura );  
         doc.text( String('FECHA  ELECTRICA') , 47 , altura );  
         doc.text( String('ASIGNADO EDALTEC') , 87, altura );  
         doc.text( String('EJECUTADO') , 120 , altura );  
         doc.text( String('ESTADO') , 167 , altura );  
   
         altura = altura + 4;
-        doc.text( String(dt_reportePdf[0].ordenTrabajo) , 5, altura );  
+        doc.text( String(dt_reportePdf[0].ordenTrabajo) , 5.5, altura );  
         doc.text( String(dt_reportePdf[0].fechaElectrica) , 47, altura );  
         doc.text( String(dt_reportePdf[0].asignadoEdaltec) , 87, altura ); 
         doc.text( String(dt_reportePdf[0].ejecutado) , 120, altura ); 
@@ -1251,7 +1295,7 @@ export const getCargarCombos = ()=>{
   
         altura = altura + 6;
         doc.setFontSize(8);
-        doc.text( String('SUPERVISOR EDTC') , 5, altura );  
+        doc.text( String('SUPERVISOR EDTC') , 5.5, altura );  
         doc.text( String('DISTRITO ') , 47 , altura );  
         doc.text( String('SED') , 90, altura );  
         doc.text( String('CLIENTE') , 110 , altura );  
@@ -1260,7 +1304,7 @@ export const getCargarCombos = ()=>{
         altura = altura + 4;
         // doc.text( String(dt_reportePdf[0].supervisorEdtc) , 5, altura );  
         splitTitle = doc.splitTextToSize( String(dt_reportePdf[0].supervisorEdtc), 40);        
-        doc.text(splitTitle,5, altura);   
+        doc.text(splitTitle,5.5, altura);   
   
         doc.text( String(dt_reportePdf[0].distrito) , 47, altura );  
         doc.text( String(dt_reportePdf[0].sed) , 90, altura ); 
@@ -1271,14 +1315,14 @@ export const getCargarCombos = ()=>{
   
         altura = altura + 6;
         doc.setFontSize(8);
-        doc.text( String('VEREDA_SARDINEL') , 5, altura );  
+        doc.text( String('VEREDA_SARDINEL') , 5.5, altura );  
         doc.text( String('GRAS ') , 47 , altura );  
         doc.text( String('PISO ESPECIAL') , 87, altura );  
         doc.text( String('PISO CONCRETO') , 120 , altura );  
         doc.text( String('PISO ASFALTO ') , 167 , altura );  
   
         altura = altura + 4;
-        doc.text( String(dt_reportePdf[0].veredaSardinel) , 5, altura );  
+        doc.text( String(dt_reportePdf[0].veredaSardinel) , 5.5, altura );  
         doc.text( String(dt_reportePdf[0].grass) , 47, altura );  
         doc.text( String(dt_reportePdf[0].pisoEspecial) , 87, altura ); 
         doc.text( String(dt_reportePdf[0].pisoConcreto) , 120, altura ); 
@@ -1341,8 +1385,7 @@ export const getCargarCombos = ()=>{
       Swal_alert('error','No hay informacion para mostrar en el reporte..');
     }
   }
-  
-  
+    
   
   //----- REPORTE PDF  --------
   
@@ -1362,20 +1405,15 @@ export const getCargarCombos = ()=>{
             alert(JSON.stringify(res.data)); 
           } 
       } catch (error) {
-        dispatch(spinnerClose());
         Swal_alert('error', JSON.stringify(error));
       } 
     }
   }   
 
 
-
- 
-
-
 export const { refrescandoEstadoFotosTab4, listFotosTab4, refrescandoEstadoMetrados,  listMetrados, refrescandoEstadoArchivoCargadoEvidencia,listArchivosCargadosEvidencias, flagTerminoCargaArchivo ,
     set_tiposReparacionesMultiple,listTiposReparacionMultipleOT , listTiposReparacionMontos, listOcurrencias, getAreas, getDistrito, getSupervisores,getTiposReparacion, getEstados, listClientes , 
-    listTipoTrabajos , listInspeccionados, listRegistrosOTS,Actualizar_formParamsTab1, inicializarTabs , set_idOrdenTrabajo_Global, set_formParamsOcurrenciaInicial, set_formParamsMetrados } = registroOTSlice.actions;
+    listTipoTrabajos, listTipoTrabajosModal , listInspeccionados, listRegistrosOTS,Actualizar_formParamsTab1, inicializarTabs , set_idOrdenTrabajo_Global, set_formParamsOcurrenciaInicial, set_formParamsMetrados } = registroOTSlice.actions;
 
 
 export default registroOTSlice.reducer;

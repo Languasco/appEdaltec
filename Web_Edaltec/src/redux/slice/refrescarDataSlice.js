@@ -2,7 +2,7 @@
 const { createSlice } = require("@reduxjs/toolkit");
 
 const initialState = {
-    flag_refrescarData : false
+    flag_refrescarData : false,
 }
 
 const refrescarDataSlice = createSlice({ 

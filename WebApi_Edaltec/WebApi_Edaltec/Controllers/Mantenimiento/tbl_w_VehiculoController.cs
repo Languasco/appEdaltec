@@ -70,7 +70,7 @@ namespace WebApi_Edaltec.Controllers.Mantenimiento
                 {
                     res.ok = true;
                     res.data = (from a in db.tbl_w_Marca_Vehiculo
-                                    //where a.estado == 1
+                                    where a.id_Estado == "001"
                                 select new
                                 {
                                     a.id_Marca,
@@ -100,7 +100,7 @@ namespace WebApi_Edaltec.Controllers.Mantenimiento
 
                     res.ok = true;
                     res.data = (from a in db.tbl_w_Carroceria_Vehiculo
-                                where a.id_Categoria == id_Categoria
+                                //where a.id_Categoria == id_Categoria
                                 select new
                                 {
                                     a.id_Carroceria,
@@ -183,7 +183,7 @@ namespace WebApi_Edaltec.Controllers.Mantenimiento
             objReemplazar.color_Vehiculo = tbl_w_Vehiculo.color_Vehiculo;
             objReemplazar.nroMotor_Vehiculo = tbl_w_Vehiculo.nroMotor_Vehiculo;
             objReemplazar.nroChasis_Vehiculo = tbl_w_Vehiculo.nroChasis_Vehiculo;
-            objReemplazar.id_Categoria = tbl_w_Vehiculo.id_Categoria;
+            //objReemplazar.id_Categoria = tbl_w_Vehiculo.id_Categoria;
 
             objReemplazar.id_Carroceria = tbl_w_Vehiculo.id_Carroceria;
             objReemplazar.anio_Vehiculo = tbl_w_Vehiculo.anio_Vehiculo;

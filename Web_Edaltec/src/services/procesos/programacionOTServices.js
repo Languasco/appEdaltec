@@ -5,20 +5,13 @@ const URL = process.env.REACT_APP_API_URL;
 
 export const programacionOTServices = ()=>{
 
-    const getMostrarInformacion =async ( cliente,fechaInicial, fechaFinal,estado )=>{   
+    const getMostrarInformacion =async ( cliente,fechaInicial, fechaFinal,TipoProceso )=>{   
         const parametros = {
-            'opcion' : 1, 'filtro' : cliente + '|' +  fechaInicial + '|' + fechaFinal + '|' +  estado   
+            'opcion' : 1, 'filtro' : cliente + '|' +  fechaInicial + '|' + fechaFinal + '|' +  TipoProceso   
         }
         const { data } = await axios.get(URL + 'tbl_w_OrdenTrabajo_Programacion', {params: parametros});
         return data
-    } 
-    const save = (objMantenimiento)=>{
-        return axios.post(URL + 'tbl_w_OrdenTrabajo_Programacion/PostProgramacionOT' , objMantenimiento );         
-    }
-
-    const update = (id, objMantenimiento)=>{  
-        return axios.put(URL + 'tbl_w_OrdenTrabajo_Programacion/PutProgramacionOT?id=' + id ,  objMantenimiento );   
-    }
+    }  
 
     const anular = async(id_Vehiculo, id_usuario)=>{   
         const parametros = {
@@ -44,24 +37,31 @@ export const programacionOTServices = ()=>{
         return data
     } 
     
-    const listadoProgramacionOT_Cliente =async ( id_Cliente )=>{   
+ 
+    const save_new = async (objMantenimiento, idProgramacionMasivo )=>{
+
+         const parametros = {
+            'opcion' : 6, 'filtro' : objMantenimiento.id_Cliente + '|' + objMantenimiento.fechaProgramacion + '|' +  objMantenimiento.ges_Empl_DNI_JefeCuadrilla   + '|' +  objMantenimiento.id_Vehiculo + '|' +  idProgramacionMasivo  + '|' + objMantenimiento.usuario_creacion
+        }
+        const { data } = await axios.get(URL + 'tbl_w_OrdenTrabajo_Programacion', {params: parametros});
+        return data
+        
+    }
+    const programacionTrabajoEdicion =async ( id_OrdenTrabajo )=>{   
         const parametros = {
-            'opcion' : 5, 'filtro' : id_Cliente
+            'opcion' : 7 , 'filtro' : id_OrdenTrabajo
         }
         const { data } = await axios.get(URL + 'tbl_w_OrdenTrabajo_Programacion', {params: parametros});
         return data
     } 
 
- 
-
     return {
         getMostrarInformacion,
-        save,
-        update,  
         anular,
         validarVehiculo,
-        validarProgramacionOT,
-        listadoProgramacionOT_Cliente
+        validarProgramacionOT, 
+        save_new,
+        programacionTrabajoEdicion
     }
 
 }

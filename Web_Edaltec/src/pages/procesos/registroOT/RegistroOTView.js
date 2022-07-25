@@ -20,8 +20,7 @@ export const RegistroOTView = () => {
       const  { showModal } = useSelector(state => state.modal);   
   return (
     <>
-        <RegistroOTFiltros > </RegistroOTFiltros>
- 
+        <RegistroOTFiltros > </RegistroOTFiltros> 
         <RegistroOTGrilla ></RegistroOTGrilla>
         {
             showModal &&   
