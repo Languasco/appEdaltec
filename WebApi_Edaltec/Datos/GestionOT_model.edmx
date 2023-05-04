@@ -1,0 +1,1662 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MFSoft_Base_EdaltecModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Prj_MPrv_LiquidacionTrab">
+          <Key>
+            <PropertyRef Name="id_OT" />
+          </Key>
+          <Property Name="id_OT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PMPr_LiqT_Codigo" Type="varchar" MaxLength="15" />
+          <Property Name="PMPr_LiqT_OT" Type="varchar" MaxLength="20" />
+          <Property Name="PMPr_SecC_Codigo" Type="char" MaxLength="3" />
+          <Property Name="Ges_Ctto_NroContrato" Type="varchar" MaxLength="30" />
+          <Property Name="id_Cliente" Type="int" />
+          <Property Name="PMPr_Ceco_Codigo" Type="varchar" MaxLength="50" />
+          <Property Name="PMPr_LiqT_SIE" Type="varchar" MaxLength="20" />
+          <Property Name="PMPr_LiqT_Sed" Type="varchar" MaxLength="100" />
+          <Property Name="PMPr_LiqT_OT_Relac" Type="varchar" MaxLength="20" />
+          <Property Name="PMPr_LiqT_OT_ISCO" Type="varchar" MaxLength="20" />
+          <Property Name="PMPr_LiqT_Descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="PMPr_LiqT_Alimentador" Type="varchar" MaxLength="30" />
+          <Property Name="PMPr_LiqT_Circuito" Type="varchar" MaxLength="50" />
+          <Property Name="PMPr_LiqT_DGruZona" Type="varchar" MaxLength="5" />
+          <Property Name="PMPr_LiqT_DGruProceso" Type="varchar" MaxLength="5" />
+          <Property Name="PMPr_LiqT_Semana" Type="int" />
+          <Property Name="PMPr_LiqT_DGruActividad" Type="varchar" MaxLength="5" />
+          <Property Name="PMPr_LiqT_DGruSubActividad" Type="varchar" MaxLength="5" />
+          <Property Name="PMPr_Resp_Codigo" Type="char" MaxLength="3" />
+          <Property Name="Ges_Empl_DNI" Type="varchar" MaxLength="10" />
+          <Property Name="id_Distrito" Type="int" />
+          <Property Name="PAlu_Orde_FechaRegistro" Type="datetime" />
+          <Property Name="PMPr_LiqT_Inicio" Type="datetime" />
+          <Property Name="PMPr_LiqT_Termino" Type="datetime" />
+          <Property Name="PAlu_Orde_FechaEjecucion" Type="datetime" />
+          <Property Name="PAlu_Orde_FechaEjecucionHora" Type="varchar" MaxLength="10" />
+          <Property Name="PAlu_Orde_FechaLiquidacion" Type="datetime" />
+          <Property Name="PMPr_LiqT_Hora_Inicio_Real" Type="varchar" MaxLength="5" />
+          <Property Name="PMPr_LiqT_Hora_Termino_Real" Type="varchar" MaxLength="5" />
+          <Property Name="PMPr_LiqT_Hora_Total_Real" Type="varchar" MaxLength="5" />
+          <Property Name="PMPr_LiqT_Observaciones" Type="varchar" MaxLength="300" />
+          <Property Name="PMPr_EstadoISCO_Descripcion" Type="varchar" MaxLength="30" />
+          <Property Name="Pub_Esta_Codigo" Type="varchar" MaxLength="3" />
+          <Property Name="PAlu_Orde_UsuCrea" Type="varchar" MaxLength="6" />
+          <Property Name="PAlu_Orde_FecCrea" Type="datetime" />
+          <Property Name="PAlu_Orde_UsuModi" Type="varchar" MaxLength="50" />
+          <Property Name="PAlu_Orde_FecModi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Pub_Estados">
+          <Key>
+            <PropertyRef Name="Pub_Esta_Codigo" />
+            <PropertyRef Name="Pub_Modu_Codigo" />
+          </Key>
+          <Property Name="Pub_Esta_Codigo" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="Pub_Esta_Nombre" Type="varchar" MaxLength="70" />
+          <Property Name="Pub_Esta_UsuCrea" Type="char" MaxLength="6" />
+          <Property Name="Pub_Esta_FecCrea" Type="datetime" />
+          <Property Name="Pub_Esta_UsuModi" Type="char" MaxLength="6" />
+          <Property Name="Pub_Esta_FecModi" Type="datetime" />
+          <Property Name="Pub_Esta_Tipo" Type="varchar" MaxLength="10" />
+          <Property Name="Pub_Esta_Identidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pub_Modu_Codigo" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="Pub_Esta_Orden" Type="int" />
+          <Property Name="Pub_Esta_Tipo_Descripcion" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Pub_Usuarios">
+          <Key>
+            <PropertyRef Name="Pub_Usua_Codigo" />
+          </Key>
+          <Property Name="Pub_Usua_Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Pub_Usua_Codigo" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="Pub_Usua_Login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pub_Usua_Clave" Type="varchar" MaxLength="30" />
+          <Property Name="Pub_Usua_Cargo" Type="varchar" MaxLength="100" />
+          <Property Name="Pub_Usua_Email" Type="varchar" MaxLength="100" />
+          <Property Name="Pub_Usua_Adm" Type="char" MaxLength="2" />
+          <Property Name="Pub_Usua_Sis" Type="char" MaxLength="2" />
+          <Property Name="Pub_Esta_Codigo" Type="char" MaxLength="3" />
+          <Property Name="Pub_Usua_UsuCrea" Type="char" MaxLength="6" />
+          <Property Name="Pub_Usua_FecCrea" Type="datetime" />
+          <Property Name="Pub_Usua_UsuModi" Type="char" MaxLength="6" />
+          <Property Name="Pub_Usua_FecModi" Type="datetime" />
+          <Property Name="Pub_Usua_Identidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pub_Area_Codigo" Type="char" MaxLength="3" />
+          <Property Name="Pub_Usua_Obs" Type="varchar" MaxLength="100" />
+          <Property Name="pub_dni" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Tbl_AccesoOpciones">
+          <Key>
+            <PropertyRef Name="id_RegistroAcceso" />
+          </Key>
+          <Property Name="id_RegistroAcceso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_personal" Type="int" />
+          <Property Name="id_opcion" Type="int" />
+          <Property Name="permisos_opciones" Type="varchar" MaxLength="50" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Aceesos">
+          <Key>
+            <PropertyRef Name="id_Acceso" />
+          </Key>
+          <Property Name="id_Acceso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Opcion" Type="int" />
+          <Property Name="id_Evento" Type="int" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Aceesos_Evento">
+          <Key>
+            <PropertyRef Name="id_Acceso_evento" />
+          </Key>
+          <Property Name="id_Acceso_evento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Opcion" Type="int" />
+          <Property Name="id_Usuario" Type="varchar" MaxLength="6" />
+          <Property Name="id_Evento" Type="int" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Definicion_Opciones">
+          <Key>
+            <PropertyRef Name="id_opcion" />
+          </Key>
+          <Property Name="id_opcion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_opcion" Type="varchar" MaxLength="150" />
+          <Property Name="url_opcion" Type="varchar" MaxLength="150" />
+          <Property Name="parentID" Type="int" />
+          <Property Name="nombreParentID" Type="varchar" MaxLength="150" />
+          <Property Name="urlImagen_Opcion" Type="varchar" MaxLength="150" />
+          <Property Name="orden_Opcion" Type="int" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+          <Property Name="interface_Opcion" Type="int" />
+          <Property Name="TipoInterface" Type="varchar" MaxLength="2" />
+          <Property Name="icon" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tbl_w_Carroceria_Vehiculo">
+          <Key>
+            <PropertyRef Name="id_Carroceria" />
+          </Key>
+          <Property Name="id_Carroceria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Categoria" Type="int" />
+          <Property Name="nombre_Carroceria" Type="varchar" MaxLength="100" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_w_Categoria_Vehiculo">
+          <Key>
+            <PropertyRef Name="id_Categoria" />
+          </Key>
+          <Property Name="id_Categoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_TipoVehiculo" Type="int" />
+          <Property Name="nombre_Categoria" Type="varchar" MaxLength="100" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_w_Cliente">
+          <Key>
+            <PropertyRef Name="id_Cliente" />
+          </Key>
+          <Property Name="id_Cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_Cliente" Type="varchar" MaxLength="150" />
+          <Property Name="ruc_cliente" Type="varchar" MaxLength="20" />
+          <Property Name="direccion_cliente" Type="varchar" MaxLength="150" />
+          <Property Name="estado" Type="varchar" MaxLength="3" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_edicion" Type="datetime" />
+          <Property Name="logoNombre" Type="varchar" MaxLength="100" />
+          <Property Name="logoNombreServidor" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tbl_w_Cliente_TipoReparacion">
+          <Key>
+            <PropertyRef Name="id_ClienteTipoReparacion" />
+          </Key>
+          <Property Name="id_ClienteTipoReparacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Contrato" Type="int" />
+          <Property Name="id_Cliente" Type="int" />
+          <Property Name="id_TipoReparacion" Type="int" />
+          <Property Name="precio_Cliente" Type="decimal" Precision="28" Scale="6" />
+          <Property Name="id_Estado" Type="varchar" MaxLength="3" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_w_Contrato">
+          <Key>
+            <PropertyRef Name="id_Contrato" />
+          </Key>
+          <Property Name="id_Contrato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Cliente" Type="int" />
+          <Property Name="numero_Contrato" Type="varchar" MaxLength="50" />
+          <Property Name="observaciones_Contrato" Type="varchar" MaxLength="250" />
+          <Property Name="fechaInicio" Type="datetime" />
+          <Property Name="fechaFinal" Type="datetime" />
+          <Property Name="id_Estado" Type="varchar" MaxLength="3" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_w_Marca_Vehiculo">
+          <Key>
+            <PropertyRef Name="id_Marca" />
+          </Key>
+          <Property Name="id_Marca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_Marca" Type="varchar" MaxLength="100" />
+          <Property Name="imagen_Marca" Type="varchar" MaxLength="150" />
+          <Property Name="id_Estado" Type="varchar" MaxLength="3" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_w_OrdenTrabajo_CAB">
+          <Key>
+            <PropertyRef Name="id_OrdenTrabajo" />
+          </Key>
+          <Property Name="id_OrdenTrabajo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Servicio" Type="int" />
+          <Property Name="fechaCorreo_OrdenTrabajo" Type="datetime" />
+          <Property Name="extension" Type="varchar" MaxLength="50" />
+          <Property Name="fechaElectrica_OrdenTrabajo" Type="datetime" />
+          <Property Name="fechaAsignada_OrdenTrabajo" Type="datetime" />
+          <Property Name="id_TipoTrabajo" Type="int" />
+          <Property Name="numero_OrdenTrabajo" Type="varchar" MaxLength="30" />
+          <Property Name="nroCliente_OrdenTrabajo" Type="varchar" MaxLength="30" />
+          <Property Name="id_Distrito" Type="int" />
+          <Property Name="direccion_OrdenTrabajo" Type="varchar" MaxLength="30" />
+          <Property Name="nroSED" Type="varchar" MaxLength="30" />
+          <Property Name="cliente_OrdenTrabajo" Type="varchar" MaxLength="150" />
+          <Property Name="cxr_OrdenTrabajo" Type="varchar" MaxLength="20" />
+          <Property Name="fechaProgramada_OrdenTrabajo" Type="datetime" />
+          <Property Name="id_Supervisor" Type="int" />
+          <Property Name="id_Supervisor2" Type="int" />
+          <Property Name="fechaAsigndaCampo_OrdenTrabajo" Type="datetime" />
+          <Property Name="supervisorContratista" Type="varchar" MaxLength="100" />
+          <Property Name="cantDesm" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="fechaElimDes_OrdenTrabajo" Type="datetime" />
+          <Property Name="fechaEjecutado_OrdenTrabajo" Type="datetime" />
+          <Property Name="personal_OrdenTrabajo" Type="varchar" MaxLength="30" />
+          <Property Name="cemento_OrdenTrabajo" Type="varchar" MaxLength="30" />
+          <Property Name="logistica_OrdenTrabajo" Type="varchar" MaxLength="30" />
+          <Property Name="tiempoGrabEfect_OrdenTrabajo" Type="varchar" MaxLength="30" />
+          <Property Name="tiempoGrabDesest_OrdenTrabajo" Type="varchar" MaxLength="30" />
+          <Property Name="unidad_OrdenTrabajo" Type="varchar" MaxLength="30" />
+          <Property Name="gastoGenerales_OrdenTrabajo" Type="varchar" MaxLength="30" />
+          <Property Name="salida_OrdenTrabajo" Type="varchar" MaxLength="30" />
+          <Property Name="llegada_OrdenTrabajo" Type="varchar" MaxLength="30" />
+          <Property Name="km_OrdenTrabajo" Type="varchar" MaxLength="30" />
+          <Property Name="id_Estado" Type="varchar" MaxLength="3" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_w_OrdenTrabajo_Programacion">
+          <Key>
+            <PropertyRef Name="id_OrdenProgramacion" />
+          </Key>
+          <Property Name="id_OrdenProgramacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Cliente" Type="int" />
+          <Property Name="fechaProgramacion" Type="datetime" />
+          <Property Name="ges_Empl_DNI_JefeCuadrilla" Type="varchar" MaxLength="20" />
+          <Property Name="id_Vehiculo" Type="int" />
+          <Property Name="id_TipoTrabajo" Type="int" />
+          <Property Name="numero_Orden_Programa" Type="varchar" MaxLength="30" />
+          <Property Name="id_Distrito_Programa" Type="int" />
+          <Property Name="direccion_Programa" Type="varchar" MaxLength="30" />
+          <Property Name="id_Estado" Type="varchar" MaxLength="3" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_w_OT_Cab">
+          <Key>
+            <PropertyRef Name="id_OT" />
+          </Key>
+          <Property Name="id_OT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Cliente" Type="int" />
+          <Property Name="nroOT" Type="varchar" MaxLength="30" />
+          <Property Name="OT_relacionada" Type="varchar" MaxLength="30" />
+          <Property Name="id_CecoEjecutor" Type="int" />
+          <Property Name="id_CecoResponsable" Type="int" />
+          <Property Name="servicios" Type="varchar" MaxLength="250" />
+          <Property Name="elemPedOrden" Type="varchar" MaxLength="250" />
+          <Property Name="id_Distrito" Type="int" />
+          <Property Name="cod_sets" Type="varchar" MaxLength="30" />
+          <Property Name="alimentador" Type="varchar" MaxLength="30" />
+          <Property Name="circuito" Type="varchar" MaxLength="250" />
+          <Property Name="sed" Type="varchar" MaxLength="250" />
+          <Property Name="desTrabajo" Type="varchar" MaxLength="250" />
+          <Property Name="observaciones" Type="varchar" MaxLength="250" />
+          <Property Name="fechaRegistroOT" Type="datetime" />
+          <Property Name="horaRegistroOT" Type="varchar" MaxLength="10" />
+          <Property Name="fechaInicioTrabajo" Type="datetime" />
+          <Property Name="HoraInicioTrabajo" Type="varchar" MaxLength="10" />
+          <Property Name="fechaFinTrabajo" Type="datetime" />
+          <Property Name="horaFinTrabajo" Type="varchar" MaxLength="10" />
+          <Property Name="id_TipoActividad" Type="int" />
+          <Property Name="origenPresupuestal" Type="varchar" MaxLength="30" />
+          <Property Name="id_InspectorEnel" Type="int" />
+          <Property Name="rol" Type="varchar" MaxLength="30" />
+          <Property Name="fechaImportacion" Type="datetime" />
+          <Property Name="fechaEjecucion" Type="datetime" />
+          <Property Name="Fechatermino" Type="datetime" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicicion" Type="int" />
+          <Property Name="fecha_edicion" Type="datetime" />
+          <Property Name="nroSemana" Type="int" />
+          <Property Name="origenTrabajo" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="tbl_w_OT_Det">
+          <Key>
+            <PropertyRef Name="id_Ot_Det" />
+          </Key>
+          <Property Name="id_Ot_Det" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Ot" Type="int" />
+          <Property Name="id_TipoTrabajo" Type="int" />
+          <Property Name="item" Type="int" />
+          <Property Name="id_Area" Type="int" />
+          <Property Name="id_supervisorContratista" Type="int" />
+          <Property Name="fechaInspeccion" Type="datetime" />
+          <Property Name="codigoEstructura" Type="varchar" MaxLength="30" />
+          <Property Name="subTipoEstructura" Type="varchar" MaxLength="30" />
+          <Property Name="tipoArmado" Type="varchar" MaxLength="30" />
+          <Property Name="posteInicioDMS" Type="varchar" MaxLength="30" />
+          <Property Name="posteFinalDMS" Type="varchar" MaxLength="30" />
+          <Property Name="MtMc" Type="varchar" MaxLength="30" />
+          <Property Name="sedCercana" Type="varchar" MaxLength="30" />
+          <Property Name="alimentador" Type="varchar" MaxLength="30" />
+          <Property Name="circuito" Type="varchar" MaxLength="30" />
+          <Property Name="tipoAnomalia" Type="varchar" MaxLength="30" />
+          <Property Name="id_Anomalia" Type="int" />
+          <Property Name="codigo_Anomalia" Type="varchar" MaxLength="30" />
+          <Property Name="categoria_Anomalia" Type="varchar" MaxLength="30" />
+          <Property Name="id_SubFamilia_Anomalia" Type="int" />
+          <Property Name="Alcance_Anomalia" Type="varchar" MaxLength="150" />
+          <Property Name="criticidad_Anomalia" Type="varchar" MaxLength="5" />
+          <Property Name="id_ObservacionInspeccion" Type="int" />
+          <Property Name="id_Distrito" Type="int" />
+          <Property Name="id_Zona" Type="int" />
+          <Property Name="id_ResponsableEnel" Type="int" />
+          <Property Name="tamanioPoste" Type="varchar" MaxLength="5" />
+          <Property Name="id_MatPST" Type="int" />
+          <Property Name="accesoVehiculo" Type="varchar" MaxLength="2" />
+          <Property Name="id_superficie" Type="int" />
+          <Property Name="redesTeleco" Type="varchar" MaxLength="5" />
+          <Property Name="equipoTeleco" Type="varchar" MaxLength="5" />
+          <Property Name="zocalo" Type="varchar" MaxLength="5" />
+          <Property Name="mantCalScb" Type="varchar" MaxLength="10" />
+          <Property Name="regisCarg" Type="varchar" MaxLength="10" />
+          <Property Name="medPozoTierra" Type="varchar" MaxLength="10" />
+          <Property Name="inspSCB" Type="varchar" MaxLength="10" />
+          <Property Name="termovision" Type="varchar" MaxLength="10" />
+          <Property Name="potenciaTransformador" Type="varchar" MaxLength="20" />
+          <Property Name="Marca" Type="varchar" MaxLength="50" />
+          <Property Name="Kardex" Type="varchar" MaxLength="50" />
+          <Property Name="Mt" Type="varchar" MaxLength="30" />
+          <Property Name="BT" Type="varchar" MaxLength="30" />
+          <Property Name="horaToma" Type="varchar" MaxLength="30" />
+          <Property Name="TernaSCC" Type="varchar" MaxLength="10" />
+          <Property Name="seccionCable" Type="varchar" MaxLength="50" />
+          <Property Name="tipoCable" Type="varchar" MaxLength="50" />
+          <Property Name="r" Type="varchar" MaxLength="10" />
+          <Property Name="s" Type="varchar" MaxLength="10" />
+          <Property Name="t" Type="varchar" MaxLength="10" />
+          <Property Name="tablero" Type="varchar" MaxLength="10" />
+          <Property Name="llaveBT" Type="varchar" MaxLength="10" />
+          <Property Name="terna" Type="varchar" MaxLength="10" />
+          <Property Name="seccion" Type="varchar" MaxLength="50" />
+          <Property Name="material" Type="varchar" MaxLength="50" />
+          <Property Name="tipo" Type="varchar" MaxLength="50" />
+          <Property Name="fusible" Type="varchar" MaxLength="10" />
+          <Property Name="Cap" Type="varchar" MaxLength="10" />
+          <Property Name="r2" Type="varchar" MaxLength="10" />
+          <Property Name="s2" Type="varchar" MaxLength="10" />
+          <Property Name="t2" Type="varchar" MaxLength="10" />
+          <Property Name="Sub_Cod_PFPSRC" Type="varchar" MaxLength="30" />
+          <Property Name="Sub_Tipo_Estruc" Type="varchar" MaxLength="30" />
+          <Property Name="TipoTablero" Type="varchar" MaxLength="5" />
+          <Property Name="set_DE" Type="varchar" MaxLength="30" />
+          <Property Name="codigo_DE" Type="varchar" MaxLength="30" />
+          <Property Name="Deficiencia_Enel" Type="varchar" MaxLength="30" />
+          <Property Name="Observacion_Inspeccion" Type="varchar" MaxLength="500" />
+          <Property Name="MantCali_Fecha" Type="datetime" />
+          <Property Name="MantCali_CantidadLLave" Type="varchar" MaxLength="20" />
+          <Property Name="MantCali_Material" Type="varchar" MaxLength="5" />
+          <Property Name="codigo_id" Type="varchar" MaxLength="20" />
+          <Property Name="subFamilia_anomalia" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="tbl_w_Periodo">
+          <Key>
+            <PropertyRef Name="id_Periodo" />
+          </Key>
+          <Property Name="id_Periodo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_Periodo" Type="varchar" MaxLength="100" />
+          <Property Name="fechaInicio_Periodo" Type="datetime" />
+          <Property Name="fechaTermino_Periodo" Type="datetime" />
+          <Property Name="anio_Periodo" Type="int" />
+          <Property Name="numero_Periodo" Type="int" />
+          <Property Name="id_Estado" Type="varchar" MaxLength="3" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_w_Servicio">
+          <Key>
+            <PropertyRef Name="id_Servicio" />
+          </Key>
+          <Property Name="id_Servicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_Servicio" Type="varchar" MaxLength="100" />
+          <Property Name="abreviatura_Servicio" Type="varchar" MaxLength="100" />
+          <Property Name="id_Estado" Type="varchar" MaxLength="3" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_w_Tipo_Vehiculo">
+          <Key>
+            <PropertyRef Name="id_TipoVehiculo" />
+          </Key>
+          <Property Name="id_TipoVehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_TipoVehiculo" Type="varchar" MaxLength="50" />
+          <Property Name="imagen_TipoVehiculo" Type="varchar" MaxLength="150" />
+          <Property Name="estado" Type="int" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_w_TipoReparacion">
+          <Key>
+            <PropertyRef Name="id_TipoReparacion" />
+          </Key>
+          <Property Name="id_TipoReparacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_TipoReparacion" Type="varchar" MaxLength="100" />
+          <Property Name="id_Estado" Type="varchar" MaxLength="3" />
+          <Property Name="codigo_Anterior" Type="varchar" MaxLength="10" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_w_TiposObras">
+          <Key>
+            <PropertyRef Name="id_TipoTrabajo" />
+          </Key>
+          <Property Name="id_TipoTrabajo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion_TipoTrabajo" Type="varchar" MaxLength="100" />
+          <Property Name="abreviatura_TipoTrabajo" Type="varchar" MaxLength="20" />
+          <Property Name="Ges_Proy_Codigo" Type="varchar" MaxLength="5" />
+          <Property Name="id_Estado" Type="varchar" MaxLength="3" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_w_Vehiculo">
+          <Key>
+            <PropertyRef Name="id_Vehiculo" />
+          </Key>
+          <Property Name="id_Vehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_TipoVehiculo" Type="int" />
+          <Property Name="nroPlaca_Vehiculo" Type="varchar" MaxLength="30" />
+          <Property Name="id_Marca" Type="int" />
+          <Property Name="modelo_vehiculo" Type="varchar" MaxLength="250" />
+          <Property Name="color_Vehiculo" Type="varchar" MaxLength="30" />
+          <Property Name="nroMotor_Vehiculo" Type="varchar" MaxLength="30" />
+          <Property Name="nroChasis_Vehiculo" Type="varchar" MaxLength="30" />
+          <Property Name="id_Categoria" Type="int" />
+          <Property Name="id_Carroceria" Type="int" />
+          <Property Name="anio_Vehiculo" Type="int" />
+          <Property Name="cilidraje_Vehiculo" Type="decimal" Precision="28" Scale="6" />
+          <Property Name="id_Combustible" Type="int" />
+          <Property Name="kmInicial_Vehiculo" Type="decimal" Precision="28" Scale="6" />
+          <Property Name="kmMant_Vehiculo" Type="decimal" Precision="28" Scale="6" />
+          <Property Name="dni_Conductor" Type="varchar" MaxLength="20" />
+          <Property Name="ruc_Proveedor" Type="varchar" MaxLength="20" />
+          <Property Name="id_Estado" Type="varchar" MaxLength="3" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="varchar" MaxLength="6" />
+          <Property Name="fecha_edicion" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__Tbl_Acces__id_op__26323865">
+          <End Role="tbl_Definicion_Opciones" Type="Self.tbl_Definicion_Opciones" Multiplicity="0..1" />
+          <End Role="Tbl_AccesoOpciones" Type="Self.Tbl_AccesoOpciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Definicion_Opciones">
+              <PropertyRef Name="id_opcion" />
+            </Principal>
+            <Dependent Role="Tbl_AccesoOpciones">
+              <PropertyRef Name="id_opcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MFSoft_Base_EdaltecModelStoreContainer">
+          <EntitySet Name="Prj_MPrv_LiquidacionTrab" EntityType="Self.Prj_MPrv_LiquidacionTrab" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pub_Estados" EntityType="Self.Pub_Estados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pub_Usuarios" EntityType="Self.Pub_Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_AccesoOpciones" EntityType="Self.Tbl_AccesoOpciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Aceesos" EntityType="Self.tbl_Aceesos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Aceesos_Evento" EntityType="Self.tbl_Aceesos_Evento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Definicion_Opciones" EntityType="Self.tbl_Definicion_Opciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_w_Carroceria_Vehiculo" EntityType="Self.tbl_w_Carroceria_Vehiculo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_w_Categoria_Vehiculo" EntityType="Self.tbl_w_Categoria_Vehiculo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_w_Cliente" EntityType="Self.tbl_w_Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_w_Cliente_TipoReparacion" EntityType="Self.tbl_w_Cliente_TipoReparacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_w_Contrato" EntityType="Self.tbl_w_Contrato" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_w_Marca_Vehiculo" EntityType="Self.tbl_w_Marca_Vehiculo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_w_OrdenTrabajo_CAB" EntityType="Self.tbl_w_OrdenTrabajo_CAB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_w_OrdenTrabajo_Programacion" EntityType="Self.tbl_w_OrdenTrabajo_Programacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_w_OT_Cab" EntityType="Self.tbl_w_OT_Cab" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_w_OT_Det" EntityType="Self.tbl_w_OT_Det" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_w_Periodo" EntityType="Self.tbl_w_Periodo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_w_Servicio" EntityType="Self.tbl_w_Servicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_w_Tipo_Vehiculo" EntityType="Self.tbl_w_Tipo_Vehiculo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_w_TipoReparacion" EntityType="Self.tbl_w_TipoReparacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_w_TiposObras" EntityType="Self.tbl_w_TiposObras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_w_Vehiculo" EntityType="Self.tbl_w_Vehiculo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Tbl_Acces__id_op__26323865" Association="Self.FK__Tbl_Acces__id_op__26323865">
+            <End Role="tbl_Definicion_Opciones" EntitySet="tbl_Definicion_Opciones" />
+            <End Role="Tbl_AccesoOpciones" EntitySet="Tbl_AccesoOpciones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MFSoft_Base_EdaltecModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Pub_Usuarios">
+          <Key>
+            <PropertyRef Name="Pub_Usua_Codigo" />
+          </Key>
+          <Property Name="Pub_Usua_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Pub_Usua_Codigo" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Pub_Usua_Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pub_Usua_Clave" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Pub_Usua_Cargo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Pub_Usua_Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Pub_Usua_Adm" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Pub_Usua_Sis" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Pub_Esta_Codigo" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Pub_Usua_UsuCrea" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="Pub_Usua_FecCrea" Type="DateTime" Precision="3" />
+          <Property Name="Pub_Usua_UsuModi" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="Pub_Usua_FecModi" Type="DateTime" Precision="3" />
+          <Property Name="Pub_Usua_Identidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pub_Area_Codigo" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Pub_Usua_Obs" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="pub_dni" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Tbl_AccesoOpciones">
+          <Key>
+            <PropertyRef Name="id_RegistroAcceso" />
+          </Key>
+          <Property Name="id_RegistroAcceso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_personal" Type="Int32" />
+          <Property Name="id_opcion" Type="Int32" />
+          <Property Name="permisos_opciones" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_Definicion_Opciones" Relationship="Self.FK__Tbl_Acces__id_op__26323865" FromRole="Tbl_AccesoOpciones" ToRole="tbl_Definicion_Opciones" />
+        </EntityType>
+        <EntityType Name="tbl_Aceesos">
+          <Key>
+            <PropertyRef Name="id_Acceso" />
+          </Key>
+          <Property Name="id_Acceso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Opcion" Type="Int32" />
+          <Property Name="id_Evento" Type="Int32" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Aceesos_Evento">
+          <Key>
+            <PropertyRef Name="id_Acceso_evento" />
+          </Key>
+          <Property Name="id_Acceso_evento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Opcion" Type="Int32" />
+          <Property Name="id_Usuario" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="id_Evento" Type="Int32" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Definicion_Opciones">
+          <Key>
+            <PropertyRef Name="id_opcion" />
+          </Key>
+          <Property Name="id_opcion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_opcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="url_opcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="parentID" Type="Int32" />
+          <Property Name="nombreParentID" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="urlImagen_Opcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="orden_Opcion" Type="Int32" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <Property Name="interface_Opcion" Type="Int32" />
+          <Property Name="TipoInterface" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_AccesoOpciones" Relationship="Self.FK__Tbl_Acces__id_op__26323865" FromRole="tbl_Definicion_Opciones" ToRole="Tbl_AccesoOpciones" />
+          <Property Name="icon" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__Tbl_Acces__id_op__26323865">
+          <End Role="tbl_Definicion_Opciones" Type="Self.tbl_Definicion_Opciones" Multiplicity="0..1" />
+          <End Role="Tbl_AccesoOpciones" Type="Self.Tbl_AccesoOpciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Definicion_Opciones">
+              <PropertyRef Name="id_opcion" />
+            </Principal>
+            <Dependent Role="Tbl_AccesoOpciones">
+              <PropertyRef Name="id_opcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MFSoft_Base_EdaltecEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Pub_Usuarios" EntityType="Self.Pub_Usuarios" />
+          <EntitySet Name="Tbl_AccesoOpciones" EntityType="Self.Tbl_AccesoOpciones" />
+          <EntitySet Name="tbl_Aceesos" EntityType="Self.tbl_Aceesos" />
+          <EntitySet Name="tbl_Aceesos_Evento" EntityType="Self.tbl_Aceesos_Evento" />
+          <EntitySet Name="tbl_Definicion_Opciones" EntityType="Self.tbl_Definicion_Opciones" />
+          <AssociationSet Name="FK__Tbl_Acces__id_op__26323865" Association="Self.FK__Tbl_Acces__id_op__26323865">
+            <End Role="tbl_Definicion_Opciones" EntitySet="tbl_Definicion_Opciones" />
+            <End Role="Tbl_AccesoOpciones" EntitySet="Tbl_AccesoOpciones" />
+          </AssociationSet>
+          <EntitySet Name="tbl_w_OT_Cab" EntityType="MFSoft_Base_EdaltecModel.tbl_w_OT_Cab" />
+          <EntitySet Name="Prj_MPrv_LiquidacionTrab" EntityType="MFSoft_Base_EdaltecModel.Prj_MPrv_LiquidacionTrab" />
+          <EntitySet Name="tbl_w_OT_Det" EntityType="MFSoft_Base_EdaltecModel.tbl_w_OT_Det" />
+          <EntitySet Name="tbl_w_OrdenTrabajo_CAB" EntityType="MFSoft_Base_EdaltecModel.tbl_w_OrdenTrabajo_CAB" />
+          <EntitySet Name="tbl_w_Cliente" EntityType="MFSoft_Base_EdaltecModel.tbl_w_Cliente" />
+          <EntitySet Name="tbl_w_Periodo" EntityType="MFSoft_Base_EdaltecModel.tbl_w_Periodo" />
+          <EntitySet Name="tbl_w_Servicio" EntityType="MFSoft_Base_EdaltecModel.tbl_w_Servicio" />
+          <EntitySet Name="tbl_w_TipoReparacion" EntityType="MFSoft_Base_EdaltecModel.tbl_w_TipoReparacion" />
+          <EntitySet Name="tbl_w_TiposObras" EntityType="MFSoft_Base_EdaltecModel.tbl_w_TiposObras" />
+          <EntitySet Name="Pub_Estados" EntityType="MFSoft_Base_EdaltecModel.Pub_Estados" />
+          <EntitySet Name="tbl_w_Cliente_TipoReparacion" EntityType="MFSoft_Base_EdaltecModel.tbl_w_Cliente_TipoReparacion" />
+          <EntitySet Name="tbl_w_Carroceria_Vehiculo" EntityType="MFSoft_Base_EdaltecModel.tbl_w_Carroceria_Vehiculo" />
+          <EntitySet Name="tbl_w_Categoria_Vehiculo" EntityType="MFSoft_Base_EdaltecModel.tbl_w_Categoria_Vehiculo" />
+          <EntitySet Name="tbl_w_Tipo_Vehiculo" EntityType="MFSoft_Base_EdaltecModel.tbl_w_Tipo_Vehiculo" />
+          <EntitySet Name="tbl_w_Vehiculo" EntityType="MFSoft_Base_EdaltecModel.tbl_w_Vehiculo" />
+          <EntitySet Name="tbl_w_OrdenTrabajo_Programacion" EntityType="MFSoft_Base_EdaltecModel.tbl_w_OrdenTrabajo_Programacion" />
+          <EntitySet Name="tbl_w_Contrato" EntityType="MFSoft_Base_EdaltecModel.tbl_w_Contrato" />
+          <EntitySet Name="tbl_w_Marca_Vehiculo" EntityType="MFSoft_Base_EdaltecModel.tbl_w_Marca_Vehiculo" />
+        </EntityContainer>
+        <EntityType Name="tbl_w_OT_Cab">
+          <Key>
+            <PropertyRef Name="id_OT" />
+          </Key>
+          <Property Name="id_OT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Cliente" Type="Int32" />
+          <Property Name="nroOT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="OT_relacionada" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="id_CecoEjecutor" Type="Int32" />
+          <Property Name="id_CecoResponsable" Type="Int32" />
+          <Property Name="servicios" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="elemPedOrden" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="id_Distrito" Type="Int32" />
+          <Property Name="cod_sets" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="alimentador" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="circuito" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="sed" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="desTrabajo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="observaciones" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="fechaRegistroOT" Type="DateTime" Precision="3" />
+          <Property Name="horaRegistroOT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="fechaInicioTrabajo" Type="DateTime" Precision="3" />
+          <Property Name="HoraInicioTrabajo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="fechaFinTrabajo" Type="DateTime" Precision="3" />
+          <Property Name="horaFinTrabajo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="id_TipoActividad" Type="Int32" />
+          <Property Name="origenPresupuestal" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="id_InspectorEnel" Type="Int32" />
+          <Property Name="rol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fechaImportacion" Type="DateTime" Precision="3" />
+          <Property Name="fechaEjecucion" Type="DateTime" Precision="3" />
+          <Property Name="Fechatermino" Type="DateTime" Precision="3" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicicion" Type="Int32" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <Property Name="nroSemana" Type="Int32" />
+          <Property Name="origenTrabajo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Prj_MPrv_LiquidacionTrab">
+          <Key>
+            <PropertyRef Name="id_OT" />
+          </Key>
+          <Property Name="id_OT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PMPr_LiqT_Codigo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PMPr_LiqT_OT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PMPr_SecC_Codigo" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Ges_Ctto_NroContrato" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="id_Cliente" Type="Int32" />
+          <Property Name="PMPr_Ceco_Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PMPr_LiqT_SIE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PMPr_LiqT_Sed" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PMPr_LiqT_OT_Relac" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PMPr_LiqT_OT_ISCO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PMPr_LiqT_Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PMPr_LiqT_Alimentador" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PMPr_LiqT_Circuito" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PMPr_LiqT_DGruZona" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PMPr_LiqT_DGruProceso" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PMPr_LiqT_Semana" Type="Int32" />
+          <Property Name="PMPr_LiqT_DGruActividad" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PMPr_LiqT_DGruSubActividad" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PMPr_Resp_Codigo" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Ges_Empl_DNI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="id_Distrito" Type="Int32" />
+          <Property Name="PAlu_Orde_FechaRegistro" Type="DateTime" Precision="3" />
+          <Property Name="PMPr_LiqT_Inicio" Type="DateTime" Precision="3" />
+          <Property Name="PMPr_LiqT_Termino" Type="DateTime" Precision="3" />
+          <Property Name="PAlu_Orde_FechaEjecucion" Type="DateTime" Precision="3" />
+          <Property Name="PAlu_Orde_FechaEjecucionHora" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PAlu_Orde_FechaLiquidacion" Type="DateTime" Precision="3" />
+          <Property Name="PMPr_LiqT_Hora_Inicio_Real" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PMPr_LiqT_Hora_Termino_Real" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PMPr_LiqT_Hora_Total_Real" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PMPr_LiqT_Observaciones" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="PMPr_EstadoISCO_Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Pub_Esta_Codigo" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="PAlu_Orde_UsuCrea" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="PAlu_Orde_FecCrea" Type="DateTime" Precision="3" />
+          <Property Name="PAlu_Orde_UsuModi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PAlu_Orde_FecModi" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_w_OT_Det">
+          <Key>
+            <PropertyRef Name="id_Ot_Det" />
+          </Key>
+          <Property Name="id_Ot_Det" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Ot" Type="Int32" />
+          <Property Name="id_TipoTrabajo" Type="Int32" />
+          <Property Name="item" Type="Int32" />
+          <Property Name="id_Area" Type="Int32" />
+          <Property Name="id_supervisorContratista" Type="Int32" />
+          <Property Name="fechaInspeccion" Type="DateTime" Precision="3" />
+          <Property Name="codigoEstructura" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="subTipoEstructura" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="tipoArmado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="posteInicioDMS" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="posteFinalDMS" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MtMc" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="sedCercana" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="alimentador" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="circuito" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="tipoAnomalia" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="id_Anomalia" Type="Int32" />
+          <Property Name="codigo_Anomalia" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="categoria_Anomalia" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="id_SubFamilia_Anomalia" Type="Int32" />
+          <Property Name="Alcance_Anomalia" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="criticidad_Anomalia" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="id_ObservacionInspeccion" Type="Int32" />
+          <Property Name="id_Distrito" Type="Int32" />
+          <Property Name="id_Zona" Type="Int32" />
+          <Property Name="id_ResponsableEnel" Type="Int32" />
+          <Property Name="tamanioPoste" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="id_MatPST" Type="Int32" />
+          <Property Name="accesoVehiculo" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="id_superficie" Type="Int32" />
+          <Property Name="redesTeleco" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="equipoTeleco" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="zocalo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="mantCalScb" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="regisCarg" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="medPozoTierra" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="inspSCB" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="termovision" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="potenciaTransformador" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Marca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Kardex" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mt" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="BT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="horaToma" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TernaSCC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="seccionCable" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tipoCable" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="r" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="s" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="t" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="tablero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="llaveBT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="terna" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="seccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="material" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fusible" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Cap" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="r2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="s2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="t2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Sub_Cod_PFPSRC" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Sub_Tipo_Estruc" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TipoTablero" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="set_DE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="codigo_DE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Deficiencia_Enel" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Observacion_Inspeccion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="MantCali_Fecha" Type="DateTime" Precision="3" />
+          <Property Name="MantCali_CantidadLLave" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MantCali_Material" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="codigo_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="subFamilia_anomalia" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_w_OrdenTrabajo_CAB">
+          <Key>
+            <PropertyRef Name="id_OrdenTrabajo" />
+          </Key>
+          <Property Name="id_OrdenTrabajo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Servicio" Type="Int32" />
+          <Property Name="fechaCorreo_OrdenTrabajo" Type="DateTime" Precision="3" />
+          <Property Name="extension" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fechaElectrica_OrdenTrabajo" Type="DateTime" Precision="3" />
+          <Property Name="fechaAsignada_OrdenTrabajo" Type="DateTime" Precision="3" />
+          <Property Name="id_TipoTrabajo" Type="Int32" />
+          <Property Name="numero_OrdenTrabajo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="nroCliente_OrdenTrabajo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="id_Distrito" Type="Int32" />
+          <Property Name="direccion_OrdenTrabajo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="nroSED" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="cliente_OrdenTrabajo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="cxr_OrdenTrabajo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fechaProgramada_OrdenTrabajo" Type="DateTime" Precision="3" />
+          <Property Name="id_Supervisor" Type="Int32" />
+          <Property Name="id_Supervisor2" Type="Int32" />
+          <Property Name="fechaAsigndaCampo_OrdenTrabajo" Type="DateTime" Precision="3" />
+          <Property Name="supervisorContratista" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cantDesm" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="fechaElimDes_OrdenTrabajo" Type="DateTime" Precision="3" />
+          <Property Name="fechaEjecutado_OrdenTrabajo" Type="DateTime" Precision="3" />
+          <Property Name="personal_OrdenTrabajo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="cemento_OrdenTrabajo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="logistica_OrdenTrabajo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="tiempoGrabEfect_OrdenTrabajo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="tiempoGrabDesest_OrdenTrabajo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="unidad_OrdenTrabajo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="gastoGenerales_OrdenTrabajo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="salida_OrdenTrabajo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="llegada_OrdenTrabajo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="km_OrdenTrabajo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="id_Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_w_Cliente">
+          <Key>
+            <PropertyRef Name="id_Cliente" />
+          </Key>
+          <Property Name="id_Cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_Cliente" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ruc_cliente" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="direccion_cliente" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <Property Name="logoNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="logoNombreServidor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_w_Periodo">
+          <Key>
+            <PropertyRef Name="id_Periodo" />
+          </Key>
+          <Property Name="id_Periodo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_Periodo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fechaInicio_Periodo" Type="DateTime" Precision="3" />
+          <Property Name="fechaTermino_Periodo" Type="DateTime" Precision="3" />
+          <Property Name="anio_Periodo" Type="Int32" />
+          <Property Name="numero_Periodo" Type="Int32" />
+          <Property Name="id_Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_w_Servicio">
+          <Key>
+            <PropertyRef Name="id_Servicio" />
+          </Key>
+          <Property Name="id_Servicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_Servicio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="abreviatura_Servicio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="id_Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_w_TipoReparacion">
+          <Key>
+            <PropertyRef Name="id_TipoReparacion" />
+          </Key>
+          <Property Name="id_TipoReparacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_TipoReparacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="id_Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="codigo_Anterior" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_w_TiposObras">
+          <Key>
+            <PropertyRef Name="id_TipoTrabajo" />
+          </Key>
+          <Property Name="id_TipoTrabajo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion_TipoTrabajo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="abreviatura_TipoTrabajo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Ges_Proy_Codigo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="id_Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Pub_Estados">
+          <Key>
+            <PropertyRef Name="Pub_Esta_Codigo" />
+            <PropertyRef Name="Pub_Modu_Codigo" />
+          </Key>
+          <Property Name="Pub_Esta_Codigo" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Pub_Esta_Nombre" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="Pub_Esta_UsuCrea" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="Pub_Esta_FecCrea" Type="DateTime" Precision="3" />
+          <Property Name="Pub_Esta_UsuModi" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="Pub_Esta_FecModi" Type="DateTime" Precision="3" />
+          <Property Name="Pub_Esta_Tipo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Pub_Esta_Identidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pub_Modu_Codigo" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="Pub_Esta_Orden" Type="Int32" />
+          <Property Name="Pub_Esta_Tipo_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_w_Cliente_TipoReparacion">
+          <Key>
+            <PropertyRef Name="id_ClienteTipoReparacion" />
+          </Key>
+          <Property Name="id_ClienteTipoReparacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Contrato" Type="Int32" />
+          <Property Name="id_Cliente" Type="Int32" />
+          <Property Name="id_TipoReparacion" Type="Int32" />
+          <Property Name="precio_Cliente" Type="Decimal" Precision="28" Scale="6" />
+          <Property Name="id_Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_w_Carroceria_Vehiculo">
+          <Key>
+            <PropertyRef Name="id_Carroceria" />
+          </Key>
+          <Property Name="id_Carroceria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Categoria" Type="Int32" />
+          <Property Name="nombre_Carroceria" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_w_Categoria_Vehiculo">
+          <Key>
+            <PropertyRef Name="id_Categoria" />
+          </Key>
+          <Property Name="id_Categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_TipoVehiculo" Type="Int32" />
+          <Property Name="nombre_Categoria" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_w_Tipo_Vehiculo">
+          <Key>
+            <PropertyRef Name="id_TipoVehiculo" />
+          </Key>
+          <Property Name="id_TipoVehiculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_TipoVehiculo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="imagen_TipoVehiculo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_w_Vehiculo">
+          <Key>
+            <PropertyRef Name="id_Vehiculo" />
+          </Key>
+          <Property Name="id_Vehiculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_TipoVehiculo" Type="Int32" />
+          <Property Name="nroPlaca_Vehiculo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="id_Marca" Type="Int32" />
+          <Property Name="modelo_vehiculo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="color_Vehiculo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="nroMotor_Vehiculo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="nroChasis_Vehiculo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="id_Categoria" Type="Int32" />
+          <Property Name="id_Carroceria" Type="Int32" />
+          <Property Name="anio_Vehiculo" Type="Int32" />
+          <Property Name="cilidraje_Vehiculo" Type="Decimal" Precision="28" Scale="6" />
+          <Property Name="id_Combustible" Type="Int32" />
+          <Property Name="kmInicial_Vehiculo" Type="Decimal" Precision="28" Scale="6" />
+          <Property Name="kmMant_Vehiculo" Type="Decimal" Precision="28" Scale="6" />
+          <Property Name="dni_Conductor" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ruc_Proveedor" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="id_Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_w_OrdenTrabajo_Programacion">
+          <Key>
+            <PropertyRef Name="id_OrdenProgramacion" />
+          </Key>
+          <Property Name="id_OrdenProgramacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Cliente" Type="Int32" />
+          <Property Name="fechaProgramacion" Type="DateTime" Precision="3" />
+          <Property Name="ges_Empl_DNI_JefeCuadrilla" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="id_Vehiculo" Type="Int32" />
+          <Property Name="id_TipoTrabajo" Type="Int32" />
+          <Property Name="numero_Orden_Programa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="id_Distrito_Programa" Type="Int32" />
+          <Property Name="direccion_Programa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="id_Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_w_Contrato">
+          <Key>
+            <PropertyRef Name="id_Contrato" />
+          </Key>
+          <Property Name="id_Contrato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Cliente" Type="Int32" />
+          <Property Name="numero_Contrato" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="observaciones_Contrato" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="fechaInicio" Type="DateTime" Precision="3" />
+          <Property Name="fechaFinal" Type="DateTime" Precision="3" />
+          <Property Name="id_Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_w_Marca_Vehiculo">
+          <Key>
+            <PropertyRef Name="id_Marca" />
+          </Key>
+          <Property Name="id_Marca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_Marca" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="imagen_Marca" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="id_Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MFSoft_Base_EdaltecModelStoreContainer" CdmEntityContainer="MFSoft_Base_EdaltecEntities">
+          <EntitySetMapping Name="Pub_Usuarios">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.Pub_Usuarios">
+              <MappingFragment StoreEntitySet="Pub_Usuarios">
+                <ScalarProperty Name="Pub_Usua_Nombre" ColumnName="Pub_Usua_Nombre" />
+                <ScalarProperty Name="Pub_Usua_Codigo" ColumnName="Pub_Usua_Codigo" />
+                <ScalarProperty Name="Pub_Usua_Login" ColumnName="Pub_Usua_Login" />
+                <ScalarProperty Name="Pub_Usua_Clave" ColumnName="Pub_Usua_Clave" />
+                <ScalarProperty Name="Pub_Usua_Cargo" ColumnName="Pub_Usua_Cargo" />
+                <ScalarProperty Name="Pub_Usua_Email" ColumnName="Pub_Usua_Email" />
+                <ScalarProperty Name="Pub_Usua_Adm" ColumnName="Pub_Usua_Adm" />
+                <ScalarProperty Name="Pub_Usua_Sis" ColumnName="Pub_Usua_Sis" />
+                <ScalarProperty Name="Pub_Esta_Codigo" ColumnName="Pub_Esta_Codigo" />
+                <ScalarProperty Name="Pub_Usua_UsuCrea" ColumnName="Pub_Usua_UsuCrea" />
+                <ScalarProperty Name="Pub_Usua_FecCrea" ColumnName="Pub_Usua_FecCrea" />
+                <ScalarProperty Name="Pub_Usua_UsuModi" ColumnName="Pub_Usua_UsuModi" />
+                <ScalarProperty Name="Pub_Usua_FecModi" ColumnName="Pub_Usua_FecModi" />
+                <ScalarProperty Name="Pub_Usua_Identidad" ColumnName="Pub_Usua_Identidad" />
+                <ScalarProperty Name="Pub_Area_Codigo" ColumnName="Pub_Area_Codigo" />
+                <ScalarProperty Name="Pub_Usua_Obs" ColumnName="Pub_Usua_Obs" />
+                <ScalarProperty Name="pub_dni" ColumnName="pub_dni" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_AccesoOpciones">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.Tbl_AccesoOpciones">
+              <MappingFragment StoreEntitySet="Tbl_AccesoOpciones">
+                <ScalarProperty Name="id_RegistroAcceso" ColumnName="id_RegistroAcceso" />
+                <ScalarProperty Name="id_personal" ColumnName="id_personal" />
+                <ScalarProperty Name="id_opcion" ColumnName="id_opcion" />
+                <ScalarProperty Name="permisos_opciones" ColumnName="permisos_opciones" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Aceesos">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_Aceesos">
+              <MappingFragment StoreEntitySet="tbl_Aceesos">
+                <ScalarProperty Name="id_Acceso" ColumnName="id_Acceso" />
+                <ScalarProperty Name="id_Opcion" ColumnName="id_Opcion" />
+                <ScalarProperty Name="id_Evento" ColumnName="id_Evento" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Aceesos_Evento">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_Aceesos_Evento">
+              <MappingFragment StoreEntitySet="tbl_Aceesos_Evento">
+                <ScalarProperty Name="id_Acceso_evento" ColumnName="id_Acceso_evento" />
+                <ScalarProperty Name="id_Opcion" ColumnName="id_Opcion" />
+                <ScalarProperty Name="id_Usuario" ColumnName="id_Usuario" />
+                <ScalarProperty Name="id_Evento" ColumnName="id_Evento" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Definicion_Opciones">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_Definicion_Opciones">
+              <MappingFragment StoreEntitySet="tbl_Definicion_Opciones">
+                <ScalarProperty Name="icon" ColumnName="icon" />
+                <ScalarProperty Name="id_opcion" ColumnName="id_opcion" />
+                <ScalarProperty Name="nombre_opcion" ColumnName="nombre_opcion" />
+                <ScalarProperty Name="url_opcion" ColumnName="url_opcion" />
+                <ScalarProperty Name="parentID" ColumnName="parentID" />
+                <ScalarProperty Name="nombreParentID" ColumnName="nombreParentID" />
+                <ScalarProperty Name="urlImagen_Opcion" ColumnName="urlImagen_Opcion" />
+                <ScalarProperty Name="orden_Opcion" ColumnName="orden_Opcion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="interface_Opcion" ColumnName="interface_Opcion" />
+                <ScalarProperty Name="TipoInterface" ColumnName="TipoInterface" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_w_OT_Cab">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_w_OT_Cab">
+              <MappingFragment StoreEntitySet="tbl_w_OT_Cab">
+                <ScalarProperty Name="origenTrabajo" ColumnName="origenTrabajo" />
+                <ScalarProperty Name="nroSemana" ColumnName="nroSemana" />
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicicion" ColumnName="usuario_edicicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="Fechatermino" ColumnName="Fechatermino" />
+                <ScalarProperty Name="fechaEjecucion" ColumnName="fechaEjecucion" />
+                <ScalarProperty Name="fechaImportacion" ColumnName="fechaImportacion" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="id_InspectorEnel" ColumnName="id_InspectorEnel" />
+                <ScalarProperty Name="origenPresupuestal" ColumnName="origenPresupuestal" />
+                <ScalarProperty Name="id_TipoActividad" ColumnName="id_TipoActividad" />
+                <ScalarProperty Name="horaFinTrabajo" ColumnName="horaFinTrabajo" />
+                <ScalarProperty Name="fechaFinTrabajo" ColumnName="fechaFinTrabajo" />
+                <ScalarProperty Name="HoraInicioTrabajo" ColumnName="HoraInicioTrabajo" />
+                <ScalarProperty Name="fechaInicioTrabajo" ColumnName="fechaInicioTrabajo" />
+                <ScalarProperty Name="horaRegistroOT" ColumnName="horaRegistroOT" />
+                <ScalarProperty Name="fechaRegistroOT" ColumnName="fechaRegistroOT" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="desTrabajo" ColumnName="desTrabajo" />
+                <ScalarProperty Name="sed" ColumnName="sed" />
+                <ScalarProperty Name="circuito" ColumnName="circuito" />
+                <ScalarProperty Name="alimentador" ColumnName="alimentador" />
+                <ScalarProperty Name="cod_sets" ColumnName="cod_sets" />
+                <ScalarProperty Name="id_Distrito" ColumnName="id_Distrito" />
+                <ScalarProperty Name="elemPedOrden" ColumnName="elemPedOrden" />
+                <ScalarProperty Name="servicios" ColumnName="servicios" />
+                <ScalarProperty Name="id_CecoResponsable" ColumnName="id_CecoResponsable" />
+                <ScalarProperty Name="id_CecoEjecutor" ColumnName="id_CecoEjecutor" />
+                <ScalarProperty Name="OT_relacionada" ColumnName="OT_relacionada" />
+                <ScalarProperty Name="nroOT" ColumnName="nroOT" />
+                <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
+                <ScalarProperty Name="id_OT" ColumnName="id_OT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prj_MPrv_LiquidacionTrab">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.Prj_MPrv_LiquidacionTrab">
+              <MappingFragment StoreEntitySet="Prj_MPrv_LiquidacionTrab">
+                <ScalarProperty Name="PAlu_Orde_FecModi" ColumnName="PAlu_Orde_FecModi" />
+                <ScalarProperty Name="PAlu_Orde_UsuModi" ColumnName="PAlu_Orde_UsuModi" />
+                <ScalarProperty Name="PAlu_Orde_FecCrea" ColumnName="PAlu_Orde_FecCrea" />
+                <ScalarProperty Name="PAlu_Orde_UsuCrea" ColumnName="PAlu_Orde_UsuCrea" />
+                <ScalarProperty Name="Pub_Esta_Codigo" ColumnName="Pub_Esta_Codigo" />
+                <ScalarProperty Name="PMPr_EstadoISCO_Descripcion" ColumnName="PMPr_EstadoISCO_Descripcion" />
+                <ScalarProperty Name="PMPr_LiqT_Observaciones" ColumnName="PMPr_LiqT_Observaciones" />
+                <ScalarProperty Name="PMPr_LiqT_Hora_Total_Real" ColumnName="PMPr_LiqT_Hora_Total_Real" />
+                <ScalarProperty Name="PMPr_LiqT_Hora_Termino_Real" ColumnName="PMPr_LiqT_Hora_Termino_Real" />
+                <ScalarProperty Name="PMPr_LiqT_Hora_Inicio_Real" ColumnName="PMPr_LiqT_Hora_Inicio_Real" />
+                <ScalarProperty Name="PAlu_Orde_FechaLiquidacion" ColumnName="PAlu_Orde_FechaLiquidacion" />
+                <ScalarProperty Name="PAlu_Orde_FechaEjecucionHora" ColumnName="PAlu_Orde_FechaEjecucionHora" />
+                <ScalarProperty Name="PAlu_Orde_FechaEjecucion" ColumnName="PAlu_Orde_FechaEjecucion" />
+                <ScalarProperty Name="PMPr_LiqT_Termino" ColumnName="PMPr_LiqT_Termino" />
+                <ScalarProperty Name="PMPr_LiqT_Inicio" ColumnName="PMPr_LiqT_Inicio" />
+                <ScalarProperty Name="PAlu_Orde_FechaRegistro" ColumnName="PAlu_Orde_FechaRegistro" />
+                <ScalarProperty Name="id_Distrito" ColumnName="id_Distrito" />
+                <ScalarProperty Name="Ges_Empl_DNI" ColumnName="Ges_Empl_DNI" />
+                <ScalarProperty Name="PMPr_Resp_Codigo" ColumnName="PMPr_Resp_Codigo" />
+                <ScalarProperty Name="PMPr_LiqT_DGruSubActividad" ColumnName="PMPr_LiqT_DGruSubActividad" />
+                <ScalarProperty Name="PMPr_LiqT_DGruActividad" ColumnName="PMPr_LiqT_DGruActividad" />
+                <ScalarProperty Name="PMPr_LiqT_Semana" ColumnName="PMPr_LiqT_Semana" />
+                <ScalarProperty Name="PMPr_LiqT_DGruProceso" ColumnName="PMPr_LiqT_DGruProceso" />
+                <ScalarProperty Name="PMPr_LiqT_DGruZona" ColumnName="PMPr_LiqT_DGruZona" />
+                <ScalarProperty Name="PMPr_LiqT_Circuito" ColumnName="PMPr_LiqT_Circuito" />
+                <ScalarProperty Name="PMPr_LiqT_Alimentador" ColumnName="PMPr_LiqT_Alimentador" />
+                <ScalarProperty Name="PMPr_LiqT_Descripcion" ColumnName="PMPr_LiqT_Descripcion" />
+                <ScalarProperty Name="PMPr_LiqT_OT_ISCO" ColumnName="PMPr_LiqT_OT_ISCO" />
+                <ScalarProperty Name="PMPr_LiqT_OT_Relac" ColumnName="PMPr_LiqT_OT_Relac" />
+                <ScalarProperty Name="PMPr_LiqT_Sed" ColumnName="PMPr_LiqT_Sed" />
+                <ScalarProperty Name="PMPr_LiqT_SIE" ColumnName="PMPr_LiqT_SIE" />
+                <ScalarProperty Name="PMPr_Ceco_Codigo" ColumnName="PMPr_Ceco_Codigo" />
+                <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
+                <ScalarProperty Name="Ges_Ctto_NroContrato" ColumnName="Ges_Ctto_NroContrato" />
+                <ScalarProperty Name="PMPr_SecC_Codigo" ColumnName="PMPr_SecC_Codigo" />
+                <ScalarProperty Name="PMPr_LiqT_OT" ColumnName="PMPr_LiqT_OT" />
+                <ScalarProperty Name="PMPr_LiqT_Codigo" ColumnName="PMPr_LiqT_Codigo" />
+                <ScalarProperty Name="id_OT" ColumnName="id_OT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_w_OT_Det">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_w_OT_Det">
+              <MappingFragment StoreEntitySet="tbl_w_OT_Det">
+                <ScalarProperty Name="subFamilia_anomalia" ColumnName="subFamilia_anomalia" />
+                <ScalarProperty Name="codigo_id" ColumnName="codigo_id" />
+                <ScalarProperty Name="MantCali_Material" ColumnName="MantCali_Material" />
+                <ScalarProperty Name="MantCali_CantidadLLave" ColumnName="MantCali_CantidadLLave" />
+                <ScalarProperty Name="MantCali_Fecha" ColumnName="MantCali_Fecha" />
+                <ScalarProperty Name="Observacion_Inspeccion" ColumnName="Observacion_Inspeccion" />
+                <ScalarProperty Name="Deficiencia_Enel" ColumnName="Deficiencia_Enel" />
+                <ScalarProperty Name="codigo_DE" ColumnName="codigo_DE" />
+                <ScalarProperty Name="set_DE" ColumnName="set_DE" />
+                <ScalarProperty Name="TipoTablero" ColumnName="TipoTablero" />
+                <ScalarProperty Name="Sub_Tipo_Estruc" ColumnName="Sub_Tipo_Estruc" />
+                <ScalarProperty Name="Sub_Cod_PFPSRC" ColumnName="Sub_Cod_PFPSRC" />
+                <ScalarProperty Name="t2" ColumnName="t2" />
+                <ScalarProperty Name="s2" ColumnName="s2" />
+                <ScalarProperty Name="r2" ColumnName="r2" />
+                <ScalarProperty Name="Cap" ColumnName="Cap" />
+                <ScalarProperty Name="fusible" ColumnName="fusible" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="material" ColumnName="material" />
+                <ScalarProperty Name="seccion" ColumnName="seccion" />
+                <ScalarProperty Name="terna" ColumnName="terna" />
+                <ScalarProperty Name="llaveBT" ColumnName="llaveBT" />
+                <ScalarProperty Name="tablero" ColumnName="tablero" />
+                <ScalarProperty Name="t" ColumnName="t" />
+                <ScalarProperty Name="s" ColumnName="s" />
+                <ScalarProperty Name="r" ColumnName="r" />
+                <ScalarProperty Name="tipoCable" ColumnName="tipoCable" />
+                <ScalarProperty Name="seccionCable" ColumnName="seccionCable" />
+                <ScalarProperty Name="TernaSCC" ColumnName="TernaSCC" />
+                <ScalarProperty Name="horaToma" ColumnName="horaToma" />
+                <ScalarProperty Name="BT" ColumnName="BT" />
+                <ScalarProperty Name="Mt" ColumnName="Mt" />
+                <ScalarProperty Name="Kardex" ColumnName="Kardex" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="potenciaTransformador" ColumnName="potenciaTransformador" />
+                <ScalarProperty Name="termovision" ColumnName="termovision" />
+                <ScalarProperty Name="inspSCB" ColumnName="inspSCB" />
+                <ScalarProperty Name="medPozoTierra" ColumnName="medPozoTierra" />
+                <ScalarProperty Name="regisCarg" ColumnName="regisCarg" />
+                <ScalarProperty Name="mantCalScb" ColumnName="mantCalScb" />
+                <ScalarProperty Name="zocalo" ColumnName="zocalo" />
+                <ScalarProperty Name="equipoTeleco" ColumnName="equipoTeleco" />
+                <ScalarProperty Name="redesTeleco" ColumnName="redesTeleco" />
+                <ScalarProperty Name="id_superficie" ColumnName="id_superficie" />
+                <ScalarProperty Name="accesoVehiculo" ColumnName="accesoVehiculo" />
+                <ScalarProperty Name="id_MatPST" ColumnName="id_MatPST" />
+                <ScalarProperty Name="tamanioPoste" ColumnName="tamanioPoste" />
+                <ScalarProperty Name="id_ResponsableEnel" ColumnName="id_ResponsableEnel" />
+                <ScalarProperty Name="id_Zona" ColumnName="id_Zona" />
+                <ScalarProperty Name="id_Distrito" ColumnName="id_Distrito" />
+                <ScalarProperty Name="id_ObservacionInspeccion" ColumnName="id_ObservacionInspeccion" />
+                <ScalarProperty Name="criticidad_Anomalia" ColumnName="criticidad_Anomalia" />
+                <ScalarProperty Name="Alcance_Anomalia" ColumnName="Alcance_Anomalia" />
+                <ScalarProperty Name="id_SubFamilia_Anomalia" ColumnName="id_SubFamilia_Anomalia" />
+                <ScalarProperty Name="categoria_Anomalia" ColumnName="categoria_Anomalia" />
+                <ScalarProperty Name="codigo_Anomalia" ColumnName="codigo_Anomalia" />
+                <ScalarProperty Name="id_Anomalia" ColumnName="id_Anomalia" />
+                <ScalarProperty Name="tipoAnomalia" ColumnName="tipoAnomalia" />
+                <ScalarProperty Name="circuito" ColumnName="circuito" />
+                <ScalarProperty Name="alimentador" ColumnName="alimentador" />
+                <ScalarProperty Name="sedCercana" ColumnName="sedCercana" />
+                <ScalarProperty Name="MtMc" ColumnName="MtMc" />
+                <ScalarProperty Name="posteFinalDMS" ColumnName="posteFinalDMS" />
+                <ScalarProperty Name="posteInicioDMS" ColumnName="posteInicioDMS" />
+                <ScalarProperty Name="tipoArmado" ColumnName="tipoArmado" />
+                <ScalarProperty Name="subTipoEstructura" ColumnName="subTipoEstructura" />
+                <ScalarProperty Name="codigoEstructura" ColumnName="codigoEstructura" />
+                <ScalarProperty Name="fechaInspeccion" ColumnName="fechaInspeccion" />
+                <ScalarProperty Name="id_supervisorContratista" ColumnName="id_supervisorContratista" />
+                <ScalarProperty Name="id_Area" ColumnName="id_Area" />
+                <ScalarProperty Name="item" ColumnName="item" />
+                <ScalarProperty Name="id_TipoTrabajo" ColumnName="id_TipoTrabajo" />
+                <ScalarProperty Name="id_Ot" ColumnName="id_Ot" />
+                <ScalarProperty Name="id_Ot_Det" ColumnName="id_Ot_Det" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_w_OrdenTrabajo_CAB">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_w_OrdenTrabajo_CAB">
+              <MappingFragment StoreEntitySet="tbl_w_OrdenTrabajo_CAB">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="id_Estado" ColumnName="id_Estado" />
+                <ScalarProperty Name="km_OrdenTrabajo" ColumnName="km_OrdenTrabajo" />
+                <ScalarProperty Name="llegada_OrdenTrabajo" ColumnName="llegada_OrdenTrabajo" />
+                <ScalarProperty Name="salida_OrdenTrabajo" ColumnName="salida_OrdenTrabajo" />
+                <ScalarProperty Name="gastoGenerales_OrdenTrabajo" ColumnName="gastoGenerales_OrdenTrabajo" />
+                <ScalarProperty Name="unidad_OrdenTrabajo" ColumnName="unidad_OrdenTrabajo" />
+                <ScalarProperty Name="tiempoGrabDesest_OrdenTrabajo" ColumnName="tiempoGrabDesest_OrdenTrabajo" />
+                <ScalarProperty Name="tiempoGrabEfect_OrdenTrabajo" ColumnName="tiempoGrabEfect_OrdenTrabajo" />
+                <ScalarProperty Name="logistica_OrdenTrabajo" ColumnName="logistica_OrdenTrabajo" />
+                <ScalarProperty Name="cemento_OrdenTrabajo" ColumnName="cemento_OrdenTrabajo" />
+                <ScalarProperty Name="personal_OrdenTrabajo" ColumnName="personal_OrdenTrabajo" />
+                <ScalarProperty Name="fechaEjecutado_OrdenTrabajo" ColumnName="fechaEjecutado_OrdenTrabajo" />
+                <ScalarProperty Name="fechaElimDes_OrdenTrabajo" ColumnName="fechaElimDes_OrdenTrabajo" />
+                <ScalarProperty Name="cantDesm" ColumnName="cantDesm" />
+                <ScalarProperty Name="supervisorContratista" ColumnName="supervisorContratista" />
+                <ScalarProperty Name="fechaAsigndaCampo_OrdenTrabajo" ColumnName="fechaAsigndaCampo_OrdenTrabajo" />
+                <ScalarProperty Name="id_Supervisor2" ColumnName="id_Supervisor2" />
+                <ScalarProperty Name="id_Supervisor" ColumnName="id_Supervisor" />
+                <ScalarProperty Name="fechaProgramada_OrdenTrabajo" ColumnName="fechaProgramada_OrdenTrabajo" />
+                <ScalarProperty Name="cxr_OrdenTrabajo" ColumnName="cxr_OrdenTrabajo" />
+                <ScalarProperty Name="cliente_OrdenTrabajo" ColumnName="cliente_OrdenTrabajo" />
+                <ScalarProperty Name="nroSED" ColumnName="nroSED" />
+                <ScalarProperty Name="direccion_OrdenTrabajo" ColumnName="direccion_OrdenTrabajo" />
+                <ScalarProperty Name="id_Distrito" ColumnName="id_Distrito" />
+                <ScalarProperty Name="nroCliente_OrdenTrabajo" ColumnName="nroCliente_OrdenTrabajo" />
+                <ScalarProperty Name="numero_OrdenTrabajo" ColumnName="numero_OrdenTrabajo" />
+                <ScalarProperty Name="id_TipoTrabajo" ColumnName="id_TipoTrabajo" />
+                <ScalarProperty Name="fechaAsignada_OrdenTrabajo" ColumnName="fechaAsignada_OrdenTrabajo" />
+                <ScalarProperty Name="fechaElectrica_OrdenTrabajo" ColumnName="fechaElectrica_OrdenTrabajo" />
+                <ScalarProperty Name="extension" ColumnName="extension" />
+                <ScalarProperty Name="fechaCorreo_OrdenTrabajo" ColumnName="fechaCorreo_OrdenTrabajo" />
+                <ScalarProperty Name="id_Servicio" ColumnName="id_Servicio" />
+                <ScalarProperty Name="id_OrdenTrabajo" ColumnName="id_OrdenTrabajo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_w_Cliente">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_w_Cliente">
+              <MappingFragment StoreEntitySet="tbl_w_Cliente">
+                <ScalarProperty Name="logoNombreServidor" ColumnName="logoNombreServidor" />
+                <ScalarProperty Name="logoNombre" ColumnName="logoNombre" />
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="direccion_cliente" ColumnName="direccion_cliente" />
+                <ScalarProperty Name="ruc_cliente" ColumnName="ruc_cliente" />
+                <ScalarProperty Name="nombre_Cliente" ColumnName="nombre_Cliente" />
+                <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_w_Periodo">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_w_Periodo">
+              <MappingFragment StoreEntitySet="tbl_w_Periodo">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="id_Estado" ColumnName="id_Estado" />
+                <ScalarProperty Name="numero_Periodo" ColumnName="numero_Periodo" />
+                <ScalarProperty Name="anio_Periodo" ColumnName="anio_Periodo" />
+                <ScalarProperty Name="fechaTermino_Periodo" ColumnName="fechaTermino_Periodo" />
+                <ScalarProperty Name="fechaInicio_Periodo" ColumnName="fechaInicio_Periodo" />
+                <ScalarProperty Name="nombre_Periodo" ColumnName="nombre_Periodo" />
+                <ScalarProperty Name="id_Periodo" ColumnName="id_Periodo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_w_Servicio">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_w_Servicio">
+              <MappingFragment StoreEntitySet="tbl_w_Servicio">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="id_Estado" ColumnName="id_Estado" />
+                <ScalarProperty Name="abreviatura_Servicio" ColumnName="abreviatura_Servicio" />
+                <ScalarProperty Name="nombre_Servicio" ColumnName="nombre_Servicio" />
+                <ScalarProperty Name="id_Servicio" ColumnName="id_Servicio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_w_TipoReparacion">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_w_TipoReparacion">
+              <MappingFragment StoreEntitySet="tbl_w_TipoReparacion">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="codigo_Anterior" ColumnName="codigo_Anterior" />
+                <ScalarProperty Name="id_Estado" ColumnName="id_Estado" />
+                <ScalarProperty Name="nombre_TipoReparacion" ColumnName="nombre_TipoReparacion" />
+                <ScalarProperty Name="id_TipoReparacion" ColumnName="id_TipoReparacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_w_TiposObras">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_w_TiposObras">
+              <MappingFragment StoreEntitySet="tbl_w_TiposObras">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="id_Estado" ColumnName="id_Estado" />
+                <ScalarProperty Name="Ges_Proy_Codigo" ColumnName="Ges_Proy_Codigo" />
+                <ScalarProperty Name="abreviatura_TipoTrabajo" ColumnName="abreviatura_TipoTrabajo" />
+                <ScalarProperty Name="descripcion_TipoTrabajo" ColumnName="descripcion_TipoTrabajo" />
+                <ScalarProperty Name="id_TipoTrabajo" ColumnName="id_TipoTrabajo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pub_Estados">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.Pub_Estados">
+              <MappingFragment StoreEntitySet="Pub_Estados">
+                <ScalarProperty Name="Pub_Esta_Tipo_Descripcion" ColumnName="Pub_Esta_Tipo_Descripcion" />
+                <ScalarProperty Name="Pub_Esta_Orden" ColumnName="Pub_Esta_Orden" />
+                <ScalarProperty Name="Pub_Modu_Codigo" ColumnName="Pub_Modu_Codigo" />
+                <ScalarProperty Name="Pub_Esta_Identidad" ColumnName="Pub_Esta_Identidad" />
+                <ScalarProperty Name="Pub_Esta_Tipo" ColumnName="Pub_Esta_Tipo" />
+                <ScalarProperty Name="Pub_Esta_FecModi" ColumnName="Pub_Esta_FecModi" />
+                <ScalarProperty Name="Pub_Esta_UsuModi" ColumnName="Pub_Esta_UsuModi" />
+                <ScalarProperty Name="Pub_Esta_FecCrea" ColumnName="Pub_Esta_FecCrea" />
+                <ScalarProperty Name="Pub_Esta_UsuCrea" ColumnName="Pub_Esta_UsuCrea" />
+                <ScalarProperty Name="Pub_Esta_Nombre" ColumnName="Pub_Esta_Nombre" />
+                <ScalarProperty Name="Pub_Esta_Codigo" ColumnName="Pub_Esta_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_w_Cliente_TipoReparacion">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_w_Cliente_TipoReparacion">
+              <MappingFragment StoreEntitySet="tbl_w_Cliente_TipoReparacion">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="id_Estado" ColumnName="id_Estado" />
+                <ScalarProperty Name="precio_Cliente" ColumnName="precio_Cliente" />
+                <ScalarProperty Name="id_TipoReparacion" ColumnName="id_TipoReparacion" />
+                <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
+                <ScalarProperty Name="id_Contrato" ColumnName="id_Contrato" />
+                <ScalarProperty Name="id_ClienteTipoReparacion" ColumnName="id_ClienteTipoReparacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_w_Carroceria_Vehiculo">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_w_Carroceria_Vehiculo">
+              <MappingFragment StoreEntitySet="tbl_w_Carroceria_Vehiculo">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="nombre_Carroceria" ColumnName="nombre_Carroceria" />
+                <ScalarProperty Name="id_Categoria" ColumnName="id_Categoria" />
+                <ScalarProperty Name="id_Carroceria" ColumnName="id_Carroceria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_w_Categoria_Vehiculo">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_w_Categoria_Vehiculo">
+              <MappingFragment StoreEntitySet="tbl_w_Categoria_Vehiculo">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="nombre_Categoria" ColumnName="nombre_Categoria" />
+                <ScalarProperty Name="id_TipoVehiculo" ColumnName="id_TipoVehiculo" />
+                <ScalarProperty Name="id_Categoria" ColumnName="id_Categoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_w_Tipo_Vehiculo">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_w_Tipo_Vehiculo">
+              <MappingFragment StoreEntitySet="tbl_w_Tipo_Vehiculo">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="imagen_TipoVehiculo" ColumnName="imagen_TipoVehiculo" />
+                <ScalarProperty Name="nombre_TipoVehiculo" ColumnName="nombre_TipoVehiculo" />
+                <ScalarProperty Name="id_TipoVehiculo" ColumnName="id_TipoVehiculo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_w_Vehiculo">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_w_Vehiculo">
+              <MappingFragment StoreEntitySet="tbl_w_Vehiculo">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="id_Estado" ColumnName="id_Estado" />
+                <ScalarProperty Name="ruc_Proveedor" ColumnName="ruc_Proveedor" />
+                <ScalarProperty Name="dni_Conductor" ColumnName="dni_Conductor" />
+                <ScalarProperty Name="kmMant_Vehiculo" ColumnName="kmMant_Vehiculo" />
+                <ScalarProperty Name="kmInicial_Vehiculo" ColumnName="kmInicial_Vehiculo" />
+                <ScalarProperty Name="id_Combustible" ColumnName="id_Combustible" />
+                <ScalarProperty Name="cilidraje_Vehiculo" ColumnName="cilidraje_Vehiculo" />
+                <ScalarProperty Name="anio_Vehiculo" ColumnName="anio_Vehiculo" />
+                <ScalarProperty Name="id_Carroceria" ColumnName="id_Carroceria" />
+                <ScalarProperty Name="id_Categoria" ColumnName="id_Categoria" />
+                <ScalarProperty Name="nroChasis_Vehiculo" ColumnName="nroChasis_Vehiculo" />
+                <ScalarProperty Name="nroMotor_Vehiculo" ColumnName="nroMotor_Vehiculo" />
+                <ScalarProperty Name="color_Vehiculo" ColumnName="color_Vehiculo" />
+                <ScalarProperty Name="modelo_vehiculo" ColumnName="modelo_vehiculo" />
+                <ScalarProperty Name="id_Marca" ColumnName="id_Marca" />
+                <ScalarProperty Name="nroPlaca_Vehiculo" ColumnName="nroPlaca_Vehiculo" />
+                <ScalarProperty Name="id_TipoVehiculo" ColumnName="id_TipoVehiculo" />
+                <ScalarProperty Name="id_Vehiculo" ColumnName="id_Vehiculo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_w_OrdenTrabajo_Programacion">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_w_OrdenTrabajo_Programacion">
+              <MappingFragment StoreEntitySet="tbl_w_OrdenTrabajo_Programacion">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="id_Estado" ColumnName="id_Estado" />
+                <ScalarProperty Name="direccion_Programa" ColumnName="direccion_Programa" />
+                <ScalarProperty Name="id_Distrito_Programa" ColumnName="id_Distrito_Programa" />
+                <ScalarProperty Name="numero_Orden_Programa" ColumnName="numero_Orden_Programa" />
+                <ScalarProperty Name="id_TipoTrabajo" ColumnName="id_TipoTrabajo" />
+                <ScalarProperty Name="id_Vehiculo" ColumnName="id_Vehiculo" />
+                <ScalarProperty Name="ges_Empl_DNI_JefeCuadrilla" ColumnName="ges_Empl_DNI_JefeCuadrilla" />
+                <ScalarProperty Name="fechaProgramacion" ColumnName="fechaProgramacion" />
+                <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
+                <ScalarProperty Name="id_OrdenProgramacion" ColumnName="id_OrdenProgramacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_w_Contrato">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_w_Contrato">
+              <MappingFragment StoreEntitySet="tbl_w_Contrato">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="id_Estado" ColumnName="id_Estado" />
+                <ScalarProperty Name="fechaFinal" ColumnName="fechaFinal" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="observaciones_Contrato" ColumnName="observaciones_Contrato" />
+                <ScalarProperty Name="numero_Contrato" ColumnName="numero_Contrato" />
+                <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
+                <ScalarProperty Name="id_Contrato" ColumnName="id_Contrato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_w_Marca_Vehiculo">
+            <EntityTypeMapping TypeName="MFSoft_Base_EdaltecModel.tbl_w_Marca_Vehiculo">
+              <MappingFragment StoreEntitySet="tbl_w_Marca_Vehiculo">
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="id_Estado" ColumnName="id_Estado" />
+                <ScalarProperty Name="imagen_Marca" ColumnName="imagen_Marca" />
+                <ScalarProperty Name="nombre_Marca" ColumnName="nombre_Marca" />
+                <ScalarProperty Name="id_Marca" ColumnName="id_Marca" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

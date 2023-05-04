@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a82be68ec8b84b6eaa58bf91b8f3f769" Name="Diagram1">
+        <EntityTypeShape EntityType="MFSoft_Base_EdaltecModel.Pub_Usuarios" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MFSoft_Base_EdaltecModel.Tbl_AccesoOpciones" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MFSoft_Base_EdaltecModel.tbl_Aceesos" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MFSoft_Base_EdaltecModel.tbl_Aceesos_Evento" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MFSoft_Base_EdaltecModel.tbl_Definicion_Opciones" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="MFSoft_Base_EdaltecModel.FK__Tbl_Acces__id_op__26323865" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MFSoft_Base_EdaltecModel.tbl_w_OT_Cab" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="MFSoft_Base_EdaltecModel.Prj_MPrv_LiquidacionTrab" Width="1.5" PointX="7.375" PointY="6.75" />
+        <EntityTypeShape EntityType="MFSoft_Base_EdaltecModel.tbl_w_OT_Det" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MFSoft_Base_EdaltecModel.tbl_w_OrdenTrabajo_CAB" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="MFSoft_Base_EdaltecModel.tbl_w_Cliente" Width="1.5" PointX="11.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MFSoft_Base_EdaltecModel.tbl_w_Periodo" Width="1.5" PointX="11.375" PointY="4.75" />
+        <EntityTypeShape EntityType="MFSoft_Base_EdaltecModel.tbl_w_Servicio" Width="1.5" PointX="11.375" PointY="8.75" />
+        <EntityTypeShape EntityType="MFSoft_Base_EdaltecModel.tbl_w_TipoReparacion" Width="1.5" PointX="11.375" PointY="12.75" />
+        <EntityTypeShape EntityType="MFSoft_Base_EdaltecModel.tbl_w_TiposObras" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MFSoft_Base_EdaltecModel.Pub_Estados" Width="1.5" PointX="13.375" PointY="4.75" />
+        <EntityTypeShape EntityType="MFSoft_Base_EdaltecModel.tbl_w_Cliente_TipoReparacion" Width="1.5" PointX="13.375" PointY="8.75" />
+        <EntityTypeShape EntityType="MFSoft_Base_EdaltecModel.tbl_w_Carroceria_Vehiculo" Width="1.5" PointX="3.375" PointY="15.75" />
+        <EntityTypeShape EntityType="MFSoft_Base_EdaltecModel.tbl_w_Categoria_Vehiculo" Width="1.5" PointX="15.375" PointY="6.75" />
+        <EntityTypeShape EntityType="MFSoft_Base_EdaltecModel.tbl_w_Tipo_Vehiculo" Width="1.5" PointX="15.375" PointY="14.75" />
+        <EntityTypeShape EntityType="MFSoft_Base_EdaltecModel.tbl_w_Vehiculo" Width="1.5" PointX="15.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MFSoft_Base_EdaltecModel.tbl_w_OrdenTrabajo_Programacion" Width="1.5" PointX="5.375" PointY="16.75" />
+        <EntityTypeShape EntityType="MFSoft_Base_EdaltecModel.tbl_w_Contrato" Width="1.5" PointX="15.375" PointY="10.75" />
+        <EntityTypeShape EntityType="MFSoft_Base_EdaltecModel.tbl_w_Marca_Vehiculo" Width="1.5" PointX="7.375" PointY="16.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

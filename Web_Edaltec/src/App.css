@@ -1,0 +1,253 @@
+.tableFixHead {
+  overflow-y: auto;
+  max-height: 350px;
+}
+
+.tableFixHead thead th {
+  position: sticky !important;
+  top: 0;
+}
+
+.table .theadTableModal th {
+  background-color: #2196f3;
+  color: white;
+  border-color: #B8AFAC;
+  z-index: 2000;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+}
+
+ 
+ .swal2-popup.swal2-toast .swal2-title {
+  font-size: 12px !important;
+  font-family: 'Montserrat', sans-serif !important;
+} 
+
+.swal2-title {
+  font-family: 'Montserrat', sans-serif !important;
+  color: #003575 !important;
+  font-weight: 700 !important;
+}
+
+.swal2-content {
+  font-family: 'Montserrat', sans-serif !important;
+  color: #003575 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+ 
+ 
+
+ .MuiOutlinedInput-root {
+  height: 30px;
+}
+
+.MuiInputLabel-outlined {
+  margin-top: -10px;
+}
+ 
+.MuiButtonBase-root  {
+  margin: 2px ;
+}
+
+.MuiButtonBase-root , .MuiButton-root ,  .MuiButton-contained {
+  margin: 2px !important ;
+  margin-top: 4px !important ;
+  font-size: 11px !important ;
+}
+
+.MuiButton-root {
+  padding: 6px 14px !important;
+}
+
+.MuiFormLabel-root {
+  color: rgb(0 0 0 / 48%);
+  /* font-weight: 800 !important; */
+  font-size: 12px !important;
+  line-height: 0 !important;
+}
+
+.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiSelect-outlined.MuiInputBase-input.MuiOutlinedInput-input {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+li.MuiButtonBase-root.MuiListItem-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiListItem-gutters.MuiListItem-button {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px !important;
+}  
+ 
+.MuiFormControl-root.MuiTextField-root {
+  margin-top: -10px;
+}
+
+.row{
+  margin-bottom: 13px;
+}
+
+input#standard-basic {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.swal2-container {
+  z-index: 20000 !important;
+}
+
+
+h5.MuiTypography-root.MuiTypography-h5 {
+  color: #003575;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
+
+.MuiCardContent-root,p {
+  color: #6c757d;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff !important;
+}
+
+.MuiFormControl-root.MuiTextField-root {
+  margin-top: -10px;
+  width: 98%;
+} 
+
+input.MuiInputBase-input.MuiInput-input {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11.5px !important;
+  font-weight: 500;
+}
+
+.MuiDataGrid-root .MuiDataGrid-columnHeaderTitleContainer {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 11px !important;
+}
+.MuiDataGrid-root .MuiDataGrid-row {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px !important;
+}
+
+.disabledForm {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.6;
+}
+
+tbody {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+}
+
+.MuiChip-label {
+  /* font-family: 'Montserrat', sans-serif;
+  font-weight: 800; */
+  padding-left: 5px !important;
+    padding-right: 5px!important;
+}
+
+/* input file */
+
+.botonFile {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  width: 98%;
+  margin: 5px;
+}
+
+.botonFile .btn {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+
+/* Fin de input file */
+
+
+thead.bg-dark.text-white {
+  font-family: 'Montserrat';
+  font-size: 12px;
+  font-weight: 600;
+}
+
+
+
+.MuiTypography-root.MuiAlertTitle-root.MuiTypography-body1.MuiTypography-gutterBottom {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+ 
+
+.MuiAlert-message {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.cargando {
+  cursor: pointer;
+}
+
+.fileSelected {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: #6c757d;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+span.MuiTab-wrapper {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+}
+
+.title-form {
+  padding: 10px;
+  text-transform: uppercase;
+  text-decoration: underline;
+  font-weight: 800;
+  font-family: 'Montserrat';
+  font-size: 19px;
+  color: #003575;
+}
+
+.filaEstadoAnulada {
+  color: red;
+  text-decoration: line-through;
+}
+
+/* .MuiFormLabel-root {
+  color: #adb5bd !important;
+} */
+  
+.tituloArchivo {
+    font-weight: 800;
+    font-family: 'Montserrat';
+    font-size: 15px;
+    color: #003575;
+}
+
+
+
+.MuiCardContent-root:last-child {
+  padding-bottom: 7px  !important;
+}
+
+/* //- para el comboBuscador */
+*, ::after, ::before {
+  box-sizing: border-box;
+  font-family: 'Montserrat' !important;
+  font-size: 12px;
+}
+
+.MuiAutocomplete-tag {
+  margin: 1px !important;
+}

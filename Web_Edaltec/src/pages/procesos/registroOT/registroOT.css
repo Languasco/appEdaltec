@@ -1,0 +1,96 @@
+
+.text-right {
+    text-align: right;
+}
+
+
+.text-center {
+    text-align: center;
+}
+
+.title-form {
+    padding: 10px;
+    text-transform: uppercase;
+    text-decoration: underline;
+    font-weight: 800;
+    font-family: 'Montserrat';
+    font-size: 19px;
+    color: #003575;
+}
+
+textarea.MuiInputBase-input.MuiInput-input.MuiInputBase-inputMultiline.MuiInput-inputMultiline {
+    font-size: 12px;
+    font-family: 'Montserrat';
+}
+
+.botonFile .btn {
+    width: 70%;
+}
+
+.canceledFile {
+    color: red;
+}
+ .imgContent {
+     padding: 5px;
+ }
+
+ .imgContentCard {
+    height: 180px;
+    object-fit: contain !important;
+}
+
+
+ .imgContentModal {
+    height: 401px;
+    object-fit: contain !important;
+}
+
+.centerOcurrencia {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center!important;
+}
+
+.centerBotonOcurrencia {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center!important;
+    justify-content: space-between;
+}
+
+.MuiCardMedia-media {
+    width: 100%;
+    height: 330px;
+}
+ 
+
+
+.MuiDataGrid-root .MuiDataGrid-columnHeaderTitle {
+    line-height: 15px !important;
+    white-space: initial !important;
+    text-align: center !important;
+  }
+
+
+.MuiDataGrid-root .MuiDataGrid-cell {
+    border-bottom: 1px solid rgba(224, 224, 224, 1) !important;
+    max-height: none !important;
+    line-height: unset !important;
+    white-space: normal !important;
+    padding: 10px !important;
+ 
+}
+
+.Mui-even .MuiDataGrid-row {
+    max-height: 200px!important;
+}
+
+.titleFormAlternative{
+    font-size: 16px;
+    text-decoration: underline;
+    color: #003575;
+}
+
+.MuiIconButton-root {
+    padding: 0px !important;
+}
